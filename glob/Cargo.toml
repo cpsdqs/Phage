@@ -1,0 +1,11 @@
+[package]
+name = "glob"
+version = "0.1.0"
+authors = ["cpsdqs <cpsdqs@gmail.com>"]
+
+[lib]
+name = "glob"
+crate-type = ["cdylib"]
+
+[dependencies]
+globset = "0.4"
