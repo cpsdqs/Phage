@@ -25,6 +25,8 @@ func loadDataStorage() -> DataStorage {
     return scripts
 }
 
+var scriptRequests: [String:([String]) -> Void] = [:]
+
 class SafariExtensionHandler: SFSafariExtensionHandler {
 
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
@@ -68,20 +70,68 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                     "scripts": matchingScripts,
                     "id": userInfo?["id"] as Any
                 ])
+
+                if (userInfo?["topLevel"] as? Bool) ?? false {
+                    SFSafariApplication.setToolbarItemsNeedUpdate()
+                }
             } else {
                 page.dispatchMessageToScript(withName: "scriptsForURL", userInfo: [
                     "error": "Page has no URL",
                     "id": userInfo?["id"] as Any
                 ])
             }
+        } else if messageName == "runningScripts" {
+            if let requestID = userInfo?["request"] as? String {
+                if let request = scriptRequests[requestID] {
+                    if let scripts = userInfo?["scripts"] as? [String] {
+                        request(scripts)
+                    }
+                    scriptRequests.removeValue(forKey: requestID)
+                }
+            }
         }
     }
-    
-    override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
-        // This is called when Safari's state changed in some way that would require the extension's toolbar item to be validated again.
-        validationHandler(true, "")
+
+    static func getRunningScripts(from page: SFSafariPage, callback: @escaping ([String]) -> Void) {
+        let requestID = UUID().uuidString
+        scriptRequests[requestID] = callback
+        page.dispatchMessageToScript(withName: "runningScripts", userInfo: [
+            "request": requestID
+        ])
     }
-    
+
+    override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
+        window.getActiveTab { tab in
+            guard let tab = tab else {
+                validationHandler(false, "")
+                return
+            }
+            tab.getActivePage { page in
+                guard let page = page else {
+                    validationHandler(false, "")
+                    return
+                }
+                page.getPropertiesWithCompletionHandler { properties in
+                    if properties?.url != nil {
+                        /*
+                         badges are annoying
+
+                         SafariExtensionHandler.getRunningScripts(from: page) { scripts in
+                         validationHandler(true, scripts.count > 0 ? "\(scripts.count)" : "")
+                         }
+                         */
+                        validationHandler(true, "")
+                    } else {
+                        // probably empty new-tab page or something
+                        validationHandler(false, "")
+                    }
+                }
+            }
+        }
+    }
+
+    // TODO: look into additionalRequestHeaders and CSP
+
     override func popoverViewController() -> SFSafariExtensionViewController {
         return SafariExtensionViewController.shared
     }

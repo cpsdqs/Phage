@@ -1,16 +1,24 @@
 {
     const inject = function inject () {
-        if (!window.document) return;
+        if (!window.document) return
 
         // prevent crosstalk
         const injectorID = Math.random().toString(36)
 
-        safari.extension.dispatchMessage('scriptsForURL', { url: window.location.href, id: injectorID });
+        safari.extension.dispatchMessage('scriptsForURL', {
+            url: window.location.href,
+            id: injectorID,
+            topLevel: window.top === window
+        })
+
+        let runningScriptNames = []
+
         safari.self.addEventListener('message', event => {
-            if (event.message.id !== injectorID) return
             if (event.name === 'scriptsForURL') {
+                if (event.message.id !== injectorID) return
                 if (event.message.error) return
                 for (let script of event.message.scripts) {
+                    runningScriptNames.push(script.name)
                     if (script.injectAsScriptTag) {
                         let tag = document.createElement('script')
                         tag.id = `phage-${script.uuid}`
@@ -31,6 +39,14 @@ ${script.script}
 }`)
                         fn.apply(window, [])
                     }
+                }
+            } else if (event.name === 'runningScripts') {
+                // only send top-level scripts for now
+                if (window.top === window) {
+                    safari.extension.dispatchMessage('runningScripts', {
+                        request: event.message.request,
+                        scripts: runningScriptNames
+                    })
                 }
             }
         });
