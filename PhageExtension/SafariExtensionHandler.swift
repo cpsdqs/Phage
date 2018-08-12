@@ -29,45 +29,50 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
         if messageName == "scriptsForURL" {
-            page.getPropertiesWithCompletionHandler { properties in
-                if let url = properties?.url {
-                    let scripts = loadDataStorage()
+            if let urlString = userInfo?["url"] as? String {
+                let scripts = loadDataStorage()
 
-                    var matchingScripts: [[String: Any]] = []
-                    let urlString = url.absoluteString
-                    let urlFullRange = NSRange(location: 0, length: urlString.count)
+                var matchingScripts: [[String: Any]] = []
+                let urlFullRange = NSRange(location: 0, length: urlString.count)
 
-                    for (uuid, script) in scripts.scriptList.scripts {
-                        for glob in script.metadata.matches {
-                            do {
-                                guard let pattern = globToRegex(glob) else {
-                                    NSLog("Failed to convert \(glob) to regex")
-                                    continue
-                                }
-                                let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-                                if let _ = regex.firstMatch(in: urlString, options: [], range: urlFullRange) {
-                                    matchingScripts.append([
-                                        "uuid": uuid,
-                                        "name": script.metadata.name,
-                                        "enabled": script.enabled,
-                                        "injectAsScriptTag": script.injectAsScriptTag,
-                                        "script": script.enabled ? script.script : ""
-                                    ])
-                                }
-                            } catch _ {
-                                NSLog("Failed to compile the regex for \(glob)")
+                for (uuid, script) in scripts.scriptList.scripts {
+                    var doesMatch = false;
+                    for glob in script.metadata.matches {
+                        do {
+                            guard let pattern = globToRegex(glob) else {
+                                NSLog("Failed to convert \(glob) to regex")
+                                continue
                             }
+                            let regex = try NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+                            if let _ = regex.firstMatch(in: urlString, options: [], range: urlFullRange) {
+                                doesMatch = true;
+                                break;
+                            }
+                        } catch _ {
+                            NSLog("Failed to compile the regex for \(glob)")
                         }
                     }
 
-                    page.dispatchMessageToScript(withName: "scriptsForURL", userInfo: [
-                        "scripts": matchingScripts
-                    ])
-                } else {
-                    page.dispatchMessageToScript(withName: "scriptsForURL", userInfo: [
-                        "error": "Page has no URL"
-                    ])
+                    if (doesMatch) {
+                        matchingScripts.append([
+                            "uuid": uuid,
+                            "name": script.metadata.name,
+                            "enabled": script.enabled,
+                            "injectAsScriptTag": script.injectAsScriptTag,
+                            "script": script.enabled ? script.script : ""
+                        ])
+                    }
                 }
+
+                page.dispatchMessageToScript(withName: "scriptsForURL", userInfo: [
+                    "scripts": matchingScripts,
+                    "id": userInfo?["id"] as Any
+                ])
+            } else {
+                page.dispatchMessageToScript(withName: "scriptsForURL", userInfo: [
+                    "error": "Page has no URL",
+                    "id": userInfo?["id"] as Any
+                ])
             }
         }
     }
