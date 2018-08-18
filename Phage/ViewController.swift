@@ -65,6 +65,7 @@ class ViewController: NSViewController, NSOutlineViewDelegate, NSTextViewDelegat
 
     func setDirty(_ dirty: Bool) {
         saveButton.title = dirty ? "Save*" : "Save"
+        view.window?.isDocumentEdited = dirty
     }
 
     @IBAction func newScript(_ sender: Any) {

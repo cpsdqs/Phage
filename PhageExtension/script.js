@@ -1,4 +1,21 @@
 {
+    const wrapScript = function wrapScript (name, prelude, script) {
+        name = name.replace(/\\/g, '\\\\').replace(/`/g, '\\`')
+        return `/* Phage injected script */
+try {
+${prelude}
+} catch (err) {
+    console.error(\`[Phage] Script error for ${name} (in required code)\`, err)
+}
+(function injectedScript() {
+try {
+${script}
+} catch (err) {
+    console.error(\`[Phage] Script error for ${name}\`, err)
+}
+})();`
+    }
+
     const inject = function inject () {
         if (!window.document) return
 
@@ -22,21 +39,10 @@
                     if (script.injectAsScriptTag) {
                         let tag = document.createElement('script')
                         tag.id = `phage-${script.uuid}`
-                        tag.innerHTML = `(function injectedScript() {
-try {
-${script.script}
-} catch(err) {
-    console.error(\`[Phage] Script error for ${script.name}\`, err)
-}
-})();`
+                        tag.innerHTML = wrapScript(script.name, script.prelude, script.script)
                         document.head.appendChild(tag)
                     } else {
-                        let fn = new Function(`
-try {
-${script.script}
-} catch(err) {
-    console.error(\`[Phage] Script error for ${script.name}\`, err)
-}`)
+                        let fn = new Function(wrapScript(script.name, script.prelude, script.script))
                         fn.apply(window, [])
                     }
                 }

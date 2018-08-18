@@ -10,7 +10,10 @@ import Cocoa
 
 let appGroupID = Bundle.main.infoDictionary!["TeamIdentifierPrefix"] as! String + "net.cloudwithlightning.phage"
 
-let storageURL = FileManager().containerURL(forSecurityApplicationGroupIdentifier: appGroupID)!.appendingPathComponent("phage_data.json")
+let fileManager = FileManager()
+let containerURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroupID)!
+let storageURL = containerURL.appendingPathComponent("phage_data.json")
+let requiredScriptsURL = containerURL.appendingPathComponent("required_scripts", isDirectory: true)
 
 let scriptTemplate = """
 // ==UserScript==
@@ -153,6 +156,8 @@ class ScriptData: Codable {
                     metadata.matches.append(value)
                 case "@author":
                     metadata.author = value
+                case "@require":
+                    metadata.requires.append(value)
                 default:
                     debugPrint("Unknown meta tag: ", line)
                 }
@@ -170,4 +175,64 @@ struct ScriptMetadata {
     var version = "?"
     var author = "?"
     var matches: [String] = []
+    var requires: [String] = []
+}
+
+func loadDataStorage() -> DataStorage {
+    var jsonData: Data
+    var scripts: DataStorage
+    do {
+        jsonData = try Data(contentsOf: storageURL)
+    } catch _ {
+        jsonData = "{\"scripts\":{}}".data(using: .utf8)!
+    }
+
+    do {
+        scripts = try DataStorage(json: jsonData)
+    } catch _ {
+        fatalError("Failed to decode JSON data")
+    }
+    return scripts
+}
+
+func fileURLForScript(named name: String) -> URL {
+    return requiredScriptsURL.appendingPathComponent(name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)
+}
+
+func scriptNameForFileName(_ name: String) -> String? {
+    return name.removingPercentEncoding
+}
+
+func requiredScript(named name: String) -> String? {
+    let scriptURL = fileURLForScript(named: name)
+    let data: Data
+    do {
+        data = try Data(contentsOf: scriptURL)
+    } catch _ {
+        return nil
+    }
+    return String(data: data, encoding: .utf8)
+}
+
+func writeRequiredScript(named name: String, content: String) -> Bool {
+    let scriptURL = fileURLForScript(named: name)
+    do {
+        if !fileManager.fileExists(atPath: requiredScriptsURL.absoluteString) {
+            try fileManager.createDirectory(at: requiredScriptsURL, withIntermediateDirectories: true, attributes: [:])
+        }
+        try content.data(using: .utf8)?.write(to: scriptURL)
+        return true
+    } catch {
+        debugPrint(error)
+        return false
+    }
+}
+
+func deleteRequiredScript(named name: String) {
+    let scriptURL = fileURLForScript(named: name)
+    do {
+        try fileManager.removeItem(at: scriptURL)
+    } catch {
+        //
+    }
 }

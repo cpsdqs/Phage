@@ -8,23 +8,6 @@
 
 import SafariServices
 
-func loadDataStorage() -> DataStorage {
-    var jsonData: Data
-    var scripts: DataStorage
-    do {
-        jsonData = try Data(contentsOf: storageURL)
-    } catch _ {
-        jsonData = "{\"scripts\":{}}".data(using: .utf8)!
-    }
-
-    do {
-        scripts = try DataStorage(json: jsonData)
-    } catch _ {
-        fatalError("Failed to decode JSON data")
-    }
-    return scripts
-}
-
 var scriptRequests: [String:([String]) -> Void] = [:]
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
@@ -56,12 +39,32 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                     }
 
                     if (doesMatch) {
+                        var preludeScript: String = ""
+                        if script.enabled {
+                            for script in script.metadata.requires {
+                                let sanitizedComment = script
+                                    .replacingOccurrences(of: "\n", with: "\\n")
+                                    .replacingOccurrences(of: "*/", with: "* /")
+                                let sanitizedString = script
+                                    .replacingOccurrences(of: "'", with: "\\'")
+                                    .replacingOccurrences(of: "\n", with: "\\n")
+                                preludeScript += "/* Phage required script “\(sanitizedComment)” */;\n"
+                                if let requiredScriptContent = requiredScript(named: script) {
+                                    preludeScript += requiredScriptContent
+                                } else {
+                                    preludeScript += "alert('Required script \(sanitizedString) is missing! You should open Phage and update resources')"
+                                }
+                                preludeScript += "\n"
+                            }
+                        }
+
                         matchingScripts.append([
                             "uuid": uuid,
                             "name": script.metadata.name,
                             "enabled": script.enabled,
                             "injectAsScriptTag": script.injectAsScriptTag,
-                            "script": script.enabled ? script.script : ""
+                            "script": script.enabled ? script.script : "/* script is disabled */",
+                            "prelude": preludeScript
                         ])
                     }
                 }
@@ -129,8 +132,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             }
         }
     }
-
-    // TODO: look into additionalRequestHeaders and CSP
 
     override func popoverViewController() -> SFSafariExtensionViewController {
         return SafariExtensionViewController.shared
