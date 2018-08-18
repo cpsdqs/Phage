@@ -1,14 +1,21 @@
 # Phage
 A very simple Safari app extension that injects userscripts into websites.
 
-This app is currently not made for release; expect _**lots of issues**_.
+Compared to e.g. Greasemonkey <s>there are lots of features missing</s> it’s very lightweight.
 
-![Screenshot of Phage.app](https://i.imgur.com/Lb8urit.png)
+<img src="https://i.imgur.com/Lb8urit.png" width="592" alt="Screenshot of Phage.app" />
 
-### What it does (in detail)
-Phage.app reads and writes to `~/Library/GroupContainers/[group ID]/phage_data.json`.
-
-PhageExtension (“Phage Injector”) injects a script, waits for the script to send `scriptsForURL` and then reads from `phage_data.json`, looks for matches, and sends back matching userscripts. The script then attempts to inject the script into the site. Since the injected script is in a sandbox—unless “Inject as &lt;script&gt;” is enabled—the userscript will also be sandboxed, but will work on sites with a Content-Security-Policy header that disallows running inline scripts.
+### Short Guide
+- Phage.app stores all scripts in `~/Library/GroupContainers/[group ID]/phage_data.json`.
+- The option “As &lt;script&gt;” will inject the script into &lt;head&gt; instead of running it in the sandboxed extension context (which would prevent access through the dev console)
+    + This option will break scripts on sites that prevent inline script execution using the Content-Security-Policy header
+- Use the Resources panel (in the Window menu) to load `@require`d scripts
+- Supported Greasemonkey tags:
+    + `@name`
+    + `@match` (globs only)
+    + `@require` (absolute URLs only)
+- Currently, scripts will be run whenever the extension script is injected (probably equivalent to GM’s document-start)
+    + Inside iframes, it may be delayed to whenever document fires the load event
 
 ### Building
 Requirements:
@@ -20,3 +27,4 @@ Requirements:
 Then either press Run in Xcode or run `xcodebuild`.
 
 Note that trying to get Safari to recognize the extension can be a bit irritating. If the extension randomly disappears from the list of extensions, try deleting it and building again.
+If you have multiple Phage.app bundles in your file system, press “Uninstall” in the list of extensions (which will take you to the application bundle) and ensure it’s the correct one (or remove the bundle if it isn’t).
