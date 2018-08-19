@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A34185E2129CB5D00A9B6E0 /* JSSyntaxColoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34185D2129CB5D00A9B6E0 /* JSSyntaxColoring.swift */; };
+		2A34187B2129E9A200A9B6E0 /* Highlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3418792129E82A00A9B6E0 /* Highlighter.m */; };
+		2A34187D2129EA7F00A9B6E0 /* libhighlighter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */; };
+		2A3418802129FFFD00A9B6E0 /* syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A34187F2129FFFD00A9B6E0 /* syntaxes */; };
+		2A6199952129B47500B6CD0E /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6199942129B47500B6CD0E /* Fragaria.framework */; };
 		2AB3502D2101B50900E5E50A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3502C2101B50900E5E50A /* AppDelegate.swift */; };
 		2AB3502F2101B50900E5E50A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3502E2101B50900E5E50A /* ViewController.swift */; };
 		2AB350312101B50B00E5E50A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB350302101B50B00E5E50A /* Assets.xcassets */; };
@@ -26,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2A3418732129E5D700A9B6E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2AB350212101B50900E5E50A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A34186F2129D69100A9B6E0;
+			remoteInfo = libhighlighter;
+		};
 		2A50BEE921067D8800443315 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AB350212101B50900E5E50A /* Project object */;
@@ -57,6 +69,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A34185D2129CB5D00A9B6E0 /* JSSyntaxColoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSyntaxColoring.swift; sourceTree = "<group>"; };
+		2A34186D2129D64500A9B6E0 /* highlighter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = highlighter; sourceTree = "<group>"; };
+		2A3418762129E67F00A9B6E0 /* libhighlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libhighlighter.h; sourceTree = "<group>"; };
+		2A3418772129E82900A9B6E0 /* Phage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phage-Bridging-Header.h"; sourceTree = "<group>"; };
+		2A3418782129E82A00A9B6E0 /* Highlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Highlighter.h; sourceTree = "<group>"; };
+		2A3418792129E82A00A9B6E0 /* Highlighter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Highlighter.m; sourceTree = "<group>"; };
+		2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libhighlighter.dylib; path = highlighter/target/release/libhighlighter.dylib; sourceTree = "<group>"; };
+		2A34187F2129FFFD00A9B6E0 /* syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = syntaxes; path = highlighter/syntaxes; sourceTree = SOURCE_ROOT; };
+		2A6199942129B47500B6CD0E /* Fragaria.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Fragaria.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A95ABC421027E1F000938CE /* libglob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libglob.h; sourceTree = "<group>"; };
 		2AB350292101B50900E5E50A /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AB3502C2101B50900E5E50A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +112,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A6199952129B47500B6CD0E /* Fragaria.framework in Frameworks */,
+				2A34187D2129EA7F00A9B6E0 /* libhighlighter.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +129,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A3418752129E66E00A9B6E0 /* highlighter */ = {
+			isa = PBXGroup;
+			children = (
+				2A3418762129E67F00A9B6E0 /* libhighlighter.h */,
+				2A3418782129E82A00A9B6E0 /* Highlighter.h */,
+				2A3418792129E82A00A9B6E0 /* Highlighter.m */,
+				2A3418772129E82900A9B6E0 /* Phage-Bridging-Header.h */,
+			);
+			path = highlighter;
+			sourceTree = "<group>";
+		};
 		2AB350202101B50900E5E50A = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +147,7 @@
 				2AB3502B2101B50900E5E50A /* Phage */,
 				2ADD8B04210219E600C02DF0 /* PhageExtension */,
 				2AD8F7FB21067527004F3A9B /* glob */,
+				2A34186D2129D64500A9B6E0 /* highlighter */,
 				2ADD8B01210219E600C02DF0 /* Frameworks */,
 				2AB3502A2101B50900E5E50A /* Products */,
 			);
@@ -138,6 +173,9 @@
 				2AB350322101B50B00E5E50A /* Main.storyboard */,
 				2AB350352101B50B00E5E50A /* Info.plist */,
 				2AB350362101B50B00E5E50A /* Phage.entitlements */,
+				2A34185D2129CB5D00A9B6E0 /* JSSyntaxColoring.swift */,
+				2A34187F2129FFFD00A9B6E0 /* syntaxes */,
+				2A3418752129E66E00A9B6E0 /* highlighter */,
 			);
 			path = Phage;
 			sourceTree = "<group>";
@@ -155,6 +193,8 @@
 		2ADD8B01210219E600C02DF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A6199942129B47500B6CD0E /* Fragaria.framework */,
+				2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */,
 				2ADD8B1A2102709F00C02DF0 /* libglob.dylib */,
 				2ADD8B02210219E600C02DF0 /* Cocoa.framework */,
 			);
@@ -182,6 +222,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
+		2A34186F2129D69100A9B6E0 /* libhighlighter */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "\"$(SRCROOT)/glob/build_xcode.sh\"";
+			buildConfigurationList = 2A3418702129D69100A9B6E0 /* Build configuration list for PBXLegacyTarget "libhighlighter" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/sh;
+			buildWorkingDirectory = highlighter;
+			dependencies = (
+			);
+			name = libhighlighter;
+			passBuildSettingsInEnvironment = 1;
+			productName = libsyntect;
+		};
 		2AD8FA4621067C0B004F3A9B /* libglob */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "\"$(SRCROOT)/glob/build_xcode.sh\"";
@@ -211,6 +265,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2A3418742129E5D700A9B6E0 /* PBXTargetDependency */,
 				2ADD8B13210219E700C02DF0 /* PBXTargetDependency */,
 			);
 			name = Phage;
@@ -246,8 +301,12 @@
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = cpsdqs;
 				TargetAttributes = {
+					2A34186F2129D69100A9B6E0 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					2AB350282101B50900E5E50A = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -287,6 +346,7 @@
 				2AB350282101B50900E5E50A /* Phage */,
 				2ADD8AFF210219E600C02DF0 /* PhageExtension */,
 				2AD8FA4621067C0B004F3A9B /* libglob */,
+				2A34186F2129D69100A9B6E0 /* libhighlighter */,
 			);
 		};
 /* End PBXProject section */
@@ -296,6 +356,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A3418802129FFFD00A9B6E0 /* syntaxes in Resources */,
 				2AB350312101B50B00E5E50A /* Assets.xcassets in Resources */,
 				2AB350342101B50B00E5E50A /* Main.storyboard in Resources */,
 			);
@@ -319,9 +380,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AB3503D2101DB9E00E5E50A /* DataStorage.swift in Sources */,
+				2A34185E2129CB5D00A9B6E0 /* JSSyntaxColoring.swift in Sources */,
 				2AB3502F2101B50900E5E50A /* ViewController.swift in Sources */,
 				2AF344C4212842F30010A402 /* ResourceViewController.swift in Sources */,
 				2AB3502D2101B50900E5E50A /* AppDelegate.swift in Sources */,
+				2A34187B2129E9A200A9B6E0 /* Highlighter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +402,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2A3418742129E5D700A9B6E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A34186F2129D69100A9B6E0 /* libhighlighter */;
+			targetProxy = 2A3418732129E5D700A9B6E0 /* PBXContainerItemProxy */;
+		};
 		2A50BEEA21067D8800443315 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2AD8FA4621067C0B004F3A9B /* libglob */;
@@ -371,6 +439,31 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A3418712129D69100A9B6E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2A3418722129D69100A9B6E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2AB350372101B50B00E5E50A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -491,6 +584,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Phage/Phage.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -501,9 +595,15 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/highlighter/target/release",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.Phage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Phage/highlighter/Phage-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -513,6 +613,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Phage/Phage.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -523,9 +624,14 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/highlighter/target/release",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.Phage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Phage/highlighter/Phage-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -617,6 +723,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A3418702129D69100A9B6E0 /* Build configuration list for PBXLegacyTarget "libhighlighter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A3418712129D69100A9B6E0 /* Debug */,
+				2A3418722129D69100A9B6E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2AB350242101B50900E5E50A /* Build configuration list for PBXProject "Phage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

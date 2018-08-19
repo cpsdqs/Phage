@@ -7,11 +7,12 @@
 //
 
 import Cocoa
+import Fragaria
 
-class ViewController: NSViewController, NSOutlineViewDelegate, NSTextViewDelegate {
+class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextViewDelegate, MGSDragOperationDelegate {
 
     @IBOutlet weak var outlineView: NSOutlineView!
-    @IBOutlet var textView: NSTextView!
+    @IBOutlet weak var editorView: MGSFragariaView!
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var enabledButton: NSButton!
     @IBOutlet weak var asScriptButton: NSButton!
@@ -21,12 +22,31 @@ class ViewController: NSViewController, NSOutlineViewDelegate, NSTextViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        textView.font = NSFont(name: "Menlo", size: 12.0)
-        textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-        textView.isHorizontallyResizable = true
-        textView.textContainer!.widthTracksTextView = false
-        textView.textContainer!.containerSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
-        textView.delegate = self
+//        textView.font = NSFont(name: "Menlo", size: 12.0)
+//        textView.maxSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+//        textView.isHorizontallyResizable = true
+//        textView.textContainer!.widthTracksTextView = false
+//        textView.textContainer!.containerSize = NSSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
+//        textView.delegate = self
+
+        editorView.syntaxDefinitionName = "javascript"
+        editorView.backgroundColor = NSColor.textBackgroundColor
+        editorView.gutterBackgroundColour = NSColor.underPageBackgroundColor
+        editorView.gutterTextColour = NSColor.secondaryLabelColor
+        editorView.currentLineHighlightColour = NSColor.textBackgroundColor
+        editorView.textInvisibleCharactersColour = NSColor.quaternaryLabelColor
+        editorView.defaultSyntaxErrorHighlightingColour = NSColor.systemRed
+        editorView.isSyntaxColoured = true
+        editorView.showsLineNumbers = true
+        editorView.autoCompleteEnabled = true
+        editorView.lineWrap = false
+        editorView.indentWidth = 2
+        editorView.indentWithSpaces = true
+        editorView.showsInvisibleCharacters = true
+        editorView.tabWidth = Int(editorView.indentWidth)
+        editorView.addSubstitute("¬", forInvisibleCharacter: 0xA)
+        editorView.textViewDelegate = self
+        editorView.syntaxColouring = JSSyntaxColoring()
 
         var jsonData: Data
         do {
@@ -74,13 +94,13 @@ class ViewController: NSViewController, NSOutlineViewDelegate, NSTextViewDelegat
         outlineView.reloadData()
         let row = scripts.scriptList.orderedKeys.index(of: id)!
         outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
-        textView.window?.makeFirstResponder(textView)
+        editorView.window?.makeFirstResponder(editorView)
     }
 
     @IBAction func savePressed(_ sender: Any) {
         if let selectedScript = selectedScript {
             let script = scripts.scriptList.scripts[selectedScript]!
-            script.script = textView.string
+            script.script = editorView.string as String
             script.updateMetadata()
             outlineView.reloadItem(selectedScript)
         }
@@ -150,12 +170,14 @@ class ViewController: NSViewController, NSOutlineViewDelegate, NSTextViewDelegat
     func updateContentView() {
         if let selectedScript = selectedScript {
             let scriptData = scripts.scriptList.scripts[selectedScript]!
-            textView.string = scriptData.script
+            editorView.string = scriptData.script as NSString
+            // TODO: investigate why it doesn’t invalidate automatically
+            editorView.syntaxColouring?.invalidateAllColouring()
             enabledButton.isHidden = false
             enabledButton.state = scriptData.enabled ? .on : .off
             asScriptButton.state = scriptData.injectAsScriptTag ? .on : .off
         } else {
-            textView.string = ""
+            editorView.string = ""
             enabledButton.isHidden = true
         }
         asScriptButton.isHidden = enabledButton.isHidden

@@ -23,6 +23,7 @@ Requirements:
 - [Rust and Cargo](https://rust-lang.org)
     - should be located in `~/.cargo/bin` (if not, modify `glob/build_xcode.sh`)
 - Xcode 10
+- Make sure to clone with git submodules
 
 Then either press Run in Xcode or run `xcodebuild`.
 
