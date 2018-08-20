@@ -178,6 +178,8 @@ class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextVi
         // editorView.isHidden = !visible // breaks layout
         editorView.showsGutter = visible // hide gutter instead
         createNewScriptButton.isHidden = visible
+        enabledButton.isHidden = !visible
+        asScriptButton.isHidden = !visible
     }
 
     func updateContentView() {
@@ -193,7 +195,6 @@ class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextVi
             editorView.string = ""
             setEditorVisible(false)
         }
-        asScriptButton.isHidden = enabledButton.isHidden
     }
 
     func textDidChange(_ notification: Notification) {
