@@ -12,6 +12,7 @@
 		2A34187D2129EA7F00A9B6E0 /* libhighlighter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */; };
 		2A3418802129FFFD00A9B6E0 /* syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A34187F2129FFFD00A9B6E0 /* syntaxes */; };
 		2A6199952129B47500B6CD0E /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6199942129B47500B6CD0E /* Fragaria.framework */; };
+		2A6AAD96212AE65500BB9238 /* Fragaria.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A6199942129B47500B6CD0E /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2AB3502D2101B50900E5E50A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3502C2101B50900E5E50A /* AppDelegate.swift */; };
 		2AB3502F2101B50900E5E50A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3502E2101B50900E5E50A /* ViewController.swift */; };
 		2AB350312101B50B00E5E50A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB350302101B50B00E5E50A /* Assets.xcassets */; };
@@ -55,6 +56,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		2A6AAD95212AE64100BB9238 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2A6AAD96212AE65500BB9238 /* Fragaria.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2ADD8B18210219E700C02DF0 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -262,6 +273,7 @@
 			buildConfigurationList = 2AB350392101B50B00E5E50A /* Build configuration list for PBXNativeTarget "Phage" */;
 			buildPhases = (
 				2AB350252101B50900E5E50A /* Sources */,
+				2A6AAD95212AE64100BB9238 /* CopyFiles */,
 				2AB350262101B50900E5E50A /* Frameworks */,
 				2AB350272101B50900E5E50A /* Resources */,
 				2ADD8B18210219E700C02DF0 /* Embed App Extensions */,
