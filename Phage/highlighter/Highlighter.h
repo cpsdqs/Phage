@@ -18,12 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL bold;
 @property (nonatomic) BOOL underline;
 @property (nonatomic) BOOL italic;
+@property (nonatomic) NSRange charRange;
 @end
 
 @interface Highlighter : NSObject
 
 - (instancetype)initWithFolder:(NSString *)path;
 - (NSArray<HLStyleItem*> *)highlight:(NSString *)text atLine:(NSUInteger)startLine lineCount:(NSUInteger)lineCount totalLines:(NSUInteger)totalLines;
+- (NSColor *)backgroundColor;
+- (void)setDarkMode:(BOOL)darkMode;
 - (void)invalidateCache;
 
 @end

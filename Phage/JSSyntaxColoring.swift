@@ -28,7 +28,24 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
     var syntaxColouringDelegate: SMLSyntaxColouringDelegate!
     var inspectedCharacterIndexes: NSMutableIndexSet = NSMutableIndexSet()
     var highlighter: Highlighter = Highlighter(folder: Bundle.main.path(forResource: "syntaxes", ofType: "")!)
-    var textFont: NSFont = NSFont(name: "Menlo", size: 11.0)!
+    var textFont: NSFont
+    var boldFont: NSFont
+    var italicFont: NSFont
+    var boldItalicFont: NSFont
+
+    init(fragaria: MGSFragariaView) {
+        self.fragaria = fragaria
+
+        textFont = NSFont(name: "Inconsolata LGC", size: 12.0)
+            ?? NSFont(name: "Menlo", size: 12.0)!
+        self.fragaria.textFont = textFont
+
+        let family = textFont.familyName!
+        let size = textFont.pointSize
+        boldFont = NSFontManager.shared.font(withFamily: family, traits: .boldFontMask, weight: 700, size: size)!
+        italicFont = NSFontManager.shared.font(withFamily: family, traits: .italicFontMask, weight: 400, size: size)!
+        boldItalicFont = NSFontManager.shared.font(withFamily: family, traits: [.boldFontMask, .italicFontMask], weight: 700, size: size)!
+    }
 
     // MARK: - Properties - Appearance and Behavior
 
@@ -52,6 +69,11 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
     var coloursVariables: Bool = true
     var coloursMultiLineStrings: Bool = true
     var coloursOnlyUntilEndOfLine: Bool = true
+
+    var lazyHighlightingQueue: [HLStyleItem] = []
+    var lazyHighlighter: Timer?
+    var wasDarkMode = false
+    var setBackgroundColor = false
 
     // MARK: - Instance Methods
 
@@ -81,10 +103,67 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
         var oldRange = newRange
         let changeInLength = textStorage.changeInLength
 
+        lazyHighlightingQueue = lazyHighlightingQueue.filter { (item) -> Bool in
+            return newRange.intersection(item.charRange) == nil
+        }
+
         oldRange.length -= changeInLength
         inspectedCharacterIndexes.shiftIndexesStarting(at: oldRange.upperBound, by: changeInLength)
         newRange = (textStorage.string as NSString).lineRange(for: newRange)
         inspectedCharacterIndexes.remove(in: newRange)
+    }
+
+    func visibleRange() -> NSRange {
+        let textView = fragaria.textView
+        let visibleRect = textView.enclosingScrollView!.contentView.documentVisibleRect
+        return textView.layoutManager!.glyphRange(forBoundingRect: visibleRect, in: textView.textContainer!)
+    }
+
+    func startLazyHighlightingIfNeeded() {
+        if lazyHighlighter?.isValid ?? false {
+            return
+        }
+
+        lazyHighlighter = Timer.scheduledTimer(withTimeInterval: 1.0 / 60, repeats: true, block: { (timer) in
+            if self.lazyHighlightingQueue.isEmpty {
+                timer.invalidate()
+            }
+
+            for _ in 0..<100 {
+                if let item = self.lazyHighlightingQueue.first {
+                    self.lazyHighlightingQueue.remove(at: 0)
+                    self.applyStyleItem(item)
+                } else {
+                    break
+                }
+            }
+        })
+    }
+
+    func applyStyleItem(_ item: HLStyleItem) {
+        let range = item.charRange
+        switch ((item.bold, item.italic)) {
+        case (true, true):
+            layoutManager.addTemporaryAttribute(.font, value: boldItalicFont, forCharacterRange: range)
+        case (true, false):
+            layoutManager.addTemporaryAttribute(.font, value: boldFont, forCharacterRange: range)
+        case (false, true):
+            layoutManager.addTemporaryAttribute(.font, value: italicFont, forCharacterRange: range)
+        case (false, false):
+            break
+        }
+
+        layoutManager.addTemporaryAttribute(.foregroundColor, value: item.foreground, forCharacterRange: range)
+
+        if item.underline {
+            layoutManager.addTemporaryAttribute(.underlineStyle, value: NSUnderlineStyle.single, forCharacterRange: range)
+        }
+    }
+
+    func appearanceSeemsDark() -> Bool {
+        let bgColor = NSColor.textBackgroundColor.usingColorSpace(NSColorSpace.deviceRGB)!
+        let luminance = bgColor.redComponent * 0.21 + bgColor.greenComponent * 0.72 + bgColor.blueComponent * 0.07
+        return luminance < 0.5
     }
 
     /// Recolors the invalid characters in the specified range.
@@ -93,6 +172,21 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
     ///                    all syntax colouring will be guaranteed to be
     ///                    up-to-date.
     func recolour(_ range: NSRange) {
+        let seemsDark = appearanceSeemsDark()
+        var darkModeChanged = false
+        if seemsDark != wasDarkMode {
+            highlighter.setDarkMode(seemsDark)
+            wasDarkMode = seemsDark
+            invalidateAllColouring()
+            darkModeChanged = true
+        }
+
+        if !setBackgroundColor || darkModeChanged {
+            fragaria.backgroundColor = highlighter.backgroundColor()
+            fragaria.gutterBackgroundColour = fragaria.backgroundColor
+            setBackgroundColor = true
+        }
+
         let invalidRanges = NSMutableIndexSet(indexesIn: range)
         invalidRanges.remove(inspectedCharacterIndexes as IndexSet)
         invalidRanges.enumerateRanges { (range, stop) in
@@ -108,9 +202,7 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
     ///
     /// - Parameter textView: The text view from which to get a character range.
     func invalidateVisibleRange(of textView: SMLTextView!) {
-        let visibleRect = textView.enclosingScrollView!.contentView.documentVisibleRect
-        let visibleRange = textView.layoutManager!.glyphRange(forBoundingRect: visibleRect, in: textView.textContainer!)
-        inspectedCharacterIndexes.remove(in: visibleRange)
+        inspectedCharacterIndexes.remove(in: visibleRange())
     }
 
     func clearAttributes(in range: NSRange) {
@@ -124,6 +216,8 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
     /// attributes applied.
     func invalidateAllColouring() {
         highlighter.invalidateCache()
+        lazyHighlightingQueue = []
+        lazyHighlighter?.invalidate()
 
         let docString = layoutManager.textStorage!.string
         clearAttributes(in: NSMakeRange(0, docString.count))
@@ -192,24 +286,21 @@ class JSSyntaxColoring: NSObject, SMLSyntaxColouringProtocol {
 
         clearAttributes(in: effectiveNSRange)
 
+        let requiredRange = visibleRange()
+
         for item in styleItems {
             let offset = lineIndices[Int(item.line)].encodedOffset
-            let range = NSMakeRange(offset + item.range.location, offset + item.range.length)
+            item.charRange = NSMakeRange(offset + item.range.location, offset + item.range.length)
 
-            let font = NSFont(descriptor: textFont.fontDescriptor.addingAttributes([
-                .traits: [
-                    NSFontDescriptor.TraitKey.weight: item.bold ? 0.5 : 0.0,
-                    NSFontDescriptor.TraitKey.slant: item.italic ? 0.5 : 0.0
-                ]
-            ]), size: textFont.pointSize)!
+            if requiredRange.intersection(item.charRange) == nil {
+                lazyHighlightingQueue.append(item)
+                continue
+            }
 
-            layoutManager.addTemporaryAttributes([
-                .foregroundColor: item.foreground,
-                // .backgroundColor: item.background,
-                .font: font,
-                // .underlineStyle: item.underline ? NSUnderlineStyle.single : NSUnderlineStyle.init(rawValue: 0)
-            ], forCharacterRange: range)
+            applyStyleItem(item)
         }
+
+        startLazyHighlightingIfNeeded()
 
         return effectiveNSRange
     }

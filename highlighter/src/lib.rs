@@ -13,7 +13,17 @@ const CACHE_INTERVAL: usize = 8;
 struct SyntaxHighlighter {
     syntax_set: SyntaxSet,
     cache: Vec<(ParseState, HighlightState)>,
-    theme: Theme,
+    theme_set: ThemeSet,
+    dark_mode: bool,
+}
+
+impl SyntaxHighlighter {
+    fn theme(&self) -> &Theme {
+        match self.dark_mode {
+            true => &self.theme_set.themes["Dash"],
+            false => &self.theme_set.themes["Dash (light)"],
+        }
+    }
 }
 
 fn str_from_cstr(cstr: *const c_char) -> &'static str {
@@ -31,18 +41,18 @@ pub extern "C" fn new_highlighter(folder: *const c_char) -> *mut c_void {
         }
     };
     syntax_set.link_syntaxes();
-    // let theme = ThemeSet::load_defaults().themes.remove("Solarized (dark)").unwrap();
-    let theme = ThemeSet::load_defaults().themes.remove("base16-ocean.dark").unwrap();
+    let theme_set = ThemeSet::load_from_folder(folder).unwrap();
 
     Box::into_raw(Box::new(SyntaxHighlighter {
         syntax_set,
         cache: Vec::new(),
-        theme,
+        theme_set,
+        dark_mode: false,
     })) as *mut _
 }
 
 #[repr(C)]
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Default)]
 pub struct StyleColor {
     r: f64,
     g: f64,
@@ -91,15 +101,6 @@ pub extern "C" fn highlight_range(highlighter: *mut c_void, text: *const c_char,
     if highlighter.cache.len() > last_valid_cache {
         highlighter.cache.drain((last_valid_cache + 1)..).for_each(drop);
     }
-    let syn_hl = Highlighter::new(&highlighter.theme);
-    let syntax_defn = highlighter.syntax_set.find_syntax_by_extension("js").unwrap();
-    let (mut parse_state, mut hl_state) = match highlighter.cache.get(highlighter.cache.len().saturating_sub(1)) {
-        Some(cached) => cached.clone(),
-        None => (
-            ParseState::new(syntax_defn),
-            HighlightState::new(&syn_hl, ScopeStack::default()),
-        )
-    };
     let last_cached_line = highlighter.cache.len().saturating_sub(1) * CACHE_INTERVAL;
     let start_line = if last_cached_line == 0 {
         0
@@ -107,7 +108,8 @@ pub extern "C" fn highlight_range(highlighter: *mut c_void, text: *const c_char,
         last_cached_line + 1
     };
 
-    let mut end_line = (line + line_count) * CACHE_INTERVAL;
+    let mut end_line = line + line_count;
+    end_line += CACHE_INTERVAL - (end_line % CACHE_INTERVAL);
     if end_line > total_lines {
         end_line = total_lines;
     }
@@ -118,6 +120,18 @@ pub extern "C" fn highlight_range(highlighter: *mut c_void, text: *const c_char,
     }
 
     let mut styles = Vec::new();
+
+    let borrowck_hack: &mut SyntaxHighlighter = unsafe { &mut *(highlighter as *mut _) };
+    let syn_hl = Highlighter::new(borrowck_hack.theme());
+
+    let syntax_defn = highlighter.syntax_set.find_syntax_by_extension("js").unwrap();
+    let (mut parse_state, mut hl_state) = match highlighter.cache.get(highlighter.cache.len().saturating_sub(1)) {
+        Some(cached) => cached.clone(),
+        None => (
+            ParseState::new(syntax_defn),
+            HighlightState::new(&syn_hl, ScopeStack::default()),
+        )
+    };
 
     for ln in start_line..end_line {
         let line_content = match line_iter.next() {
@@ -171,6 +185,21 @@ pub extern "C" fn highlight_range(highlighter: *mut c_void, text: *const c_char,
 pub extern "C" fn invalidate_cache(highlighter: *mut c_void) {
     let highlighter: &mut SyntaxHighlighter = unsafe { &mut *(highlighter as *mut _) };
     highlighter.cache.clear();
+}
+
+#[no_mangle]
+pub extern "C" fn background_color(highlighter: *mut c_void) -> StyleColor {
+    let highlighter: &mut SyntaxHighlighter = unsafe { &mut *(highlighter as *mut _) };
+    highlighter.theme().settings.background.map(|x| x.into()).unwrap_or_default()
+}
+
+#[no_mangle]
+pub extern "C" fn set_dark_mode(highlighter: *mut c_void, dark_mode: bool) {
+    let highlighter: &mut SyntaxHighlighter = unsafe { &mut *(highlighter as *mut _) };
+    if dark_mode != highlighter.dark_mode {
+        highlighter.dark_mode = dark_mode;
+        highlighter.cache.clear();
+    }
 }
 
 #[no_mangle]

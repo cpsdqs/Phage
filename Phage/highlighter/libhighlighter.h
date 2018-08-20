@@ -36,6 +36,8 @@ struct StyleItemList {
 void* new_highlighter(const char* folder);
 struct StyleItemList highlight_range(void* highlighter, const char* text, const uint64 line, const uint64 line_count, const uint64 total_lines);
 void invalidate_cache(void* highlighter);
+struct StyleColor background_color(void* highlighter);
+void set_dark_mode(void* highlighter, bool dark_mode);
 void dealloc_highlighter(void* highlighter);
 
 #endif /* libhighlighter_h */

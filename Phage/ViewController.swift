@@ -43,10 +43,14 @@ class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextVi
         editorView.indentWidth = 2
         editorView.indentWithSpaces = true
         editorView.showsInvisibleCharacters = true
+        editorView.insertClosingBraceAutomatically = true
+        editorView.insertClosingParenthesisAutomatically = true
         editorView.tabWidth = Int(editorView.indentWidth)
         editorView.addSubstitute("¬", forInvisibleCharacter: 0xA)
+        let syntaxColoring = JSSyntaxColoring(fragaria: editorView)
+        editorView.syntaxColouring = syntaxColoring
+        editorView.gutterFont = syntaxColoring.textFont
         editorView.textViewDelegate = self
-        editorView.syntaxColouring = JSSyntaxColoring()
 
         var jsonData: Data
         do {

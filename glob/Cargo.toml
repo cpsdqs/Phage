@@ -5,7 +5,7 @@ authors = ["cpsdqs <cpsdqs@gmail.com>"]
 
 [lib]
 name = "glob"
-crate-type = ["cdylib"]
+crate-type = ["staticlib"]
 
 [dependencies]
 globset = "0.4"

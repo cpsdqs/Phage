@@ -17,6 +17,7 @@
 @synthesize bold;
 @synthesize underline;
 @synthesize italic;
+@synthesize charRange;
 @end
 
 @implementation Highlighter {
@@ -56,6 +57,15 @@
 
 - (void)invalidateCache {
     invalidate_cache(_highlighter);
+}
+
+- (NSColor *)backgroundColor {
+    struct StyleColor bg = background_color(_highlighter);
+    return [NSColor colorWithSRGBRed:bg.r green:bg.g blue:bg.b alpha:bg.a];
+}
+
+- (void)setDarkMode:(BOOL)darkMode {
+    set_dark_mode(_highlighter, darkMode);
 }
 
 - (void)dealloc {

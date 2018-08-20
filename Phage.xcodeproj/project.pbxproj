@@ -25,8 +25,8 @@
 		2ADD8B10210219E700C02DF0 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD8B0F210219E700C02DF0 /* ToolbarItemIcon.pdf */; };
 		2ADD8B14210219E700C02DF0 /* PhageExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2ADD8B00210219E600C02DF0 /* PhageExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2ADD8B1921022FD000C02DF0 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3503C2101DB9E00E5E50A /* DataStorage.swift */; };
-		2ADD8B1B2102709F00C02DF0 /* libglob.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADD8B1A2102709F00C02DF0 /* libglob.dylib */; };
 		2ADD8B1E210270CD00C02DF0 /* glob.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD8B1D210270CD00C02DF0 /* glob.m */; };
+		2AE109D4212AA5D800EA999B /* libglob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE109D0212AA4C700EA999B /* libglob.a */; };
 		2AF344C4212842F30010A402 /* ResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF344C3212842F30010A402 /* ResourceViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,6 +104,8 @@
 		2ADD8B1C210270CD00C02DF0 /* PhageExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhageExtension-Bridging-Header.h"; sourceTree = "<group>"; };
 		2ADD8B1D210270CD00C02DF0 /* glob.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = glob.m; sourceTree = "<group>"; };
 		2ADD8B1F210271D300C02DF0 /* glob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glob.h; sourceTree = "<group>"; };
+		2AE109D0212AA4C700EA999B /* libglob.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglob.a; path = glob/target/release/libglob.a; sourceTree = "<group>"; };
+		2AE109D2212AA4CC00EA999B /* .cargo-lock */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".cargo-lock"; path = "glob/target/release/.cargo-lock"; sourceTree = "<group>"; };
 		2AF344C3212842F30010A402 /* ResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,7 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ADD8B03210219E600C02DF0 /* Cocoa.framework in Frameworks */,
-				2ADD8B1B2102709F00C02DF0 /* libglob.dylib in Frameworks */,
+				2AE109D4212AA5D800EA999B /* libglob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				2A6199942129B47500B6CD0E /* Fragaria.framework */,
+				2AE109D0212AA4C700EA999B /* libglob.a */,
+				2AE109D2212AA4CC00EA999B /* .cargo-lock */,
 				2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */,
 				2ADD8B1A2102709F00C02DF0 /* libglob.dylib */,
 				2ADD8B02210219E600C02DF0 /* Cocoa.framework */,
