@@ -16,6 +16,7 @@ class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextVi
     @IBOutlet weak var saveButton: NSButton!
     @IBOutlet weak var enabledButton: NSButton!
     @IBOutlet weak var asScriptButton: NSButton!
+    @IBOutlet weak var createNewScriptButton: NSButton!
     var scripts: DataStorage!
     var selectedScript: String?
 
@@ -51,6 +52,8 @@ class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextVi
         editorView.syntaxColouring = syntaxColoring
         editorView.gutterFont = syntaxColoring.textFont
         editorView.textViewDelegate = self
+
+        setEditorVisible(false)
 
         var jsonData: Data
         do {
@@ -171,18 +174,24 @@ class ViewController: NSViewController, NSOutlineViewDelegate, MGSFragariaTextVi
         updateContentView()
     }
 
+    func setEditorVisible(_ visible: Bool) {
+        // editorView.isHidden = !visible // breaks layout
+        editorView.showsGutter = visible // hide gutter instead
+        createNewScriptButton.isHidden = visible
+    }
+
     func updateContentView() {
         if let selectedScript = selectedScript {
             let scriptData = scripts.scriptList.scripts[selectedScript]!
             editorView.string = scriptData.script as NSString
             // TODO: investigate why it doesn’t invalidate automatically
             editorView.syntaxColouring?.invalidateAllColouring()
-            enabledButton.isHidden = false
+            setEditorVisible(true)
             enabledButton.state = scriptData.enabled ? .on : .off
             asScriptButton.state = scriptData.injectAsScriptTag ? .on : .off
         } else {
             editorView.string = ""
-            enabledButton.isHidden = true
+            setEditorVisible(false)
         }
         asScriptButton.isHidden = enabledButton.isHidden
     }

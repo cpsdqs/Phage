@@ -765,95 +765,118 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="OhO-LD-is7">
+                                    <customView id="qul-wi-XMD">
                                         <rect key="frame" x="127" y="0.0" width="580" height="377"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="XA9-3v-Who" customClass="MGSFragariaView">
-                                                <rect key="frame" x="0.0" y="40" width="580" height="337"/>
-                                            </customView>
-                                            <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c44-Ik-3gr">
-                                                <rect key="frame" x="0.0" y="0.0" width="580" height="32"/>
-                                                <edgeInsets key="edgeInsets" left="8" right="8" top="0.0" bottom="0.0"/>
-                                                <beginningViews>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8Q-FW-3pO">
-                                                        <rect key="frame" x="2" y="-1" width="70" height="32"/>
-                                                        <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Mb-Fk-doP">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                            <string key="keyEquivalent">s</string>
-                                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="savePressed:" target="XfG-lQ-9wD" id="V1R-K1-iVr"/>
-                                                        </connections>
-                                                    </button>
-                                                </beginningViews>
-                                                <middleViews>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ku5-RJ-kKX">
-                                                        <rect key="frame" x="206" y="7" width="71" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="leading" state="on" inset="2" id="sa0-nL-eoC">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="enabledStateChanged:" target="XfG-lQ-9wD" id="W55-qN-yIj"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KgQ-M6-8z1">
-                                                        <rect key="frame" x="281" y="7" width="93" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="As &lt;script&gt;" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qfU-9V-ELa">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="asScriptStateChanged:" target="XfG-lQ-9wD" id="56s-yR-YzN"/>
-                                                        </connections>
-                                                    </button>
-                                                </middleViews>
-                                                <endViews>
-                                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vue-VI-PJt">
-                                                        <rect key="frame" x="518" y="6" width="54" height="19"/>
-                                                        <buttonCell key="cell" type="recessed" title="Delete" bezelStyle="recessed" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10s-gg-6bb">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="systemBold" size="12"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="deletePressed:" target="XfG-lQ-9wD" id="xpD-NH-IsI"/>
-                                                        </connections>
-                                                    </button>
-                                                </endViews>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OhO-LD-is7">
+                                                <rect key="frame" x="0.0" y="0.0" width="580" height="377"/>
+                                                <subviews>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="XA9-3v-Who" customClass="MGSFragariaView">
+                                                        <rect key="frame" x="0.0" y="32" width="580" height="345"/>
+                                                    </customView>
+                                                    <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c44-Ik-3gr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="580" height="32"/>
+                                                        <edgeInsets key="edgeInsets" left="8" right="8" top="0.0" bottom="0.0"/>
+                                                        <beginningViews>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8Q-FW-3pO">
+                                                                <rect key="frame" x="2" y="-1" width="70" height="32"/>
+                                                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Mb-Fk-doP">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                    <string key="keyEquivalent">s</string>
+                                                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="savePressed:" target="XfG-lQ-9wD" id="V1R-K1-iVr"/>
+                                                                </connections>
+                                                            </button>
+                                                        </beginningViews>
+                                                        <middleViews>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ku5-RJ-kKX">
+                                                                <rect key="frame" x="206" y="7" width="71" height="18"/>
+                                                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="leading" state="on" inset="2" id="sa0-nL-eoC">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="enabledStateChanged:" target="XfG-lQ-9wD" id="W55-qN-yIj"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KgQ-M6-8z1">
+                                                                <rect key="frame" x="281" y="7" width="93" height="18"/>
+                                                                <buttonCell key="cell" type="check" title="As &lt;script&gt;" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qfU-9V-ELa">
+                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="asScriptStateChanged:" target="XfG-lQ-9wD" id="56s-yR-YzN"/>
+                                                                </connections>
+                                                            </button>
+                                                        </middleViews>
+                                                        <endViews>
+                                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vue-VI-PJt">
+                                                                <rect key="frame" x="518" y="6" width="54" height="19"/>
+                                                                <buttonCell key="cell" type="recessed" title="Delete" bezelStyle="recessed" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="10s-gg-6bb">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="systemBold" size="12"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="deletePressed:" target="XfG-lQ-9wD" id="xpD-NH-IsI"/>
+                                                                </connections>
+                                                            </button>
+                                                        </endViews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="TiU-sh-9QP"/>
+                                                        </constraints>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
+                                                </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="32" id="TiU-sh-9QP"/>
+                                                    <constraint firstItem="XA9-3v-Who" firstAttribute="leading" secondItem="OhO-LD-is7" secondAttribute="leading" id="K4Q-8H-uU3"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XA9-3v-Who" secondAttribute="trailing" id="Q3j-Zx-Ta6"/>
+                                                    <constraint firstItem="c44-Ik-3gr" firstAttribute="width" secondItem="OhO-LD-is7" secondAttribute="width" id="SZW-ir-un9"/>
                                                 </constraints>
                                                 <visibilityPriorities>
-                                                    <integer value="1000"/>
-                                                    <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WSq-Fa-wb7">
+                                                <rect key="frame" x="228" y="177" width="125" height="23"/>
+                                                <buttonCell key="cell" type="roundTextured" title="Create New Script" bezelStyle="texturedRounded" alignment="center" borderStyle="border" inset="2" id="Xdt-Q1-0Nu">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="newScript:" target="XfG-lQ-9wD" id="qWm-9L-PJH"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="XA9-3v-Who" firstAttribute="leading" secondItem="OhO-LD-is7" secondAttribute="leading" id="K4Q-8H-uU3"/>
-                                            <constraint firstAttribute="trailing" secondItem="XA9-3v-Who" secondAttribute="trailing" id="Q3j-Zx-Ta6"/>
-                                            <constraint firstItem="c44-Ik-3gr" firstAttribute="width" secondItem="OhO-LD-is7" secondAttribute="width" id="SZW-ir-un9"/>
+                                            <constraint firstItem="WSq-Fa-wb7" firstAttribute="centerX" secondItem="qul-wi-XMD" secondAttribute="centerX" id="BlO-vl-9O6"/>
+                                            <constraint firstItem="OhO-LD-is7" firstAttribute="top" secondItem="qul-wi-XMD" secondAttribute="top" id="Gtk-XC-c4g"/>
+                                            <constraint firstItem="WSq-Fa-wb7" firstAttribute="centerY" secondItem="qul-wi-XMD" secondAttribute="centerY" id="Pmi-aT-fHW"/>
+                                            <constraint firstAttribute="trailing" secondItem="OhO-LD-is7" secondAttribute="trailing" id="exX-Gm-aIg"/>
+                                            <constraint firstItem="OhO-LD-is7" firstAttribute="leading" secondItem="qul-wi-XMD" secondAttribute="leading" id="vJF-39-35b"/>
+                                            <constraint firstAttribute="bottom" secondItem="OhO-LD-is7" secondAttribute="bottom" id="vQq-Tu-c0x"/>
                                         </constraints>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
+                                    </customView>
                                 </subviews>
                                 <holdingPriorities>
                                     <real value="384"/>
@@ -870,6 +893,7 @@
                     </view>
                     <connections>
                         <outlet property="asScriptButton" destination="KgQ-M6-8z1" id="ZN9-26-t1K"/>
+                        <outlet property="createNewScriptButton" destination="WSq-Fa-wb7" id="y4W-wU-L5F"/>
                         <outlet property="editorView" destination="XA9-3v-Who" id="yXo-NM-QMk"/>
                         <outlet property="enabledButton" destination="Ku5-RJ-kKX" id="7VA-Cu-9EI"/>
                         <outlet property="outlineView" destination="y1o-3H-WFD" id="PcX-57-b9y"/>
@@ -878,7 +902,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="46" y="792"/>
+            <point key="canvasLocation" x="45.5" y="791.5"/>
         </scene>
     </scenes>
     <resources>
