@@ -36,27 +36,61 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         }
     }
 
-    private func serializeBundle(name: String) -> [String: Any] {
-        let bundle = data.bundles[name]
+    private func serializeBundle(name: String, matching url: URL) -> [String: Any]? {
+        guard let bundle = data.bundles[name] else { return nil }
+
+        var scripts: [[String: Any]] = []
+        var styles: [[String: Any]] = []
+
+        for (name, file) in bundle.files {
+            switch file.contents() {
+            case .some(.javascript(let section)):
+                if section.matches(url: url) {
+                    scripts.append([
+                        "name": name,
+                        "prelude": "", // TODO: load dependencies
+                        "contents": section.contents,
+                    ])
+                }
+            case .some(.stylesheets(let sections)):
+                for (i, section) in sections.enumerated() {
+                    if section.matches(url: url) {
+                        styles.append([
+                            "id": [name, i],
+                            "contents": section.contents,
+                        ])
+                    }
+                }
+            case .none:
+                break
+            }
+        }
+
+        if scripts.isEmpty && styles.isEmpty {
+            return nil
+        }
+
+        scripts.sort { (lhs, rhs) in
+            let lhsName = lhs["name"] as! String
+            let rhsName = rhs["name"] as! String
+            return lhsName.lexicographicallyPrecedes(rhsName)
+        }
+
         return [
             "id": name,
-            "scripts": bundle?.files.filter({ (k, v) in v.type == .javascript }).map({ (k, v) in
-                [
-                    "id": k,
-                    // TODO: required scripts
-                    "prelude": "",
-                    "contents": v.loadContents()
-                        ?? "throw new Error('phage load error')"
-                ]
-            }) ?? [],
-            "styles": bundle?.files.filter({ (k, v) in v.type == .stylesheet }).map({ (k, v) in
-                [
-                    "id": k,
-                    "contents": v.loadContents()
-                        ?? "/* failed to load */"
-                ]
-            }) ?? []
+            "scripts": scripts,
+            "styles": styles,
         ]
+    }
+
+    func serializeBundlesMatching(url: URL) -> [[String: Any]] {
+        var bundles: [[String: Any]] = []
+        for (name, _) in data.bundles {
+            if let serialized = serializeBundle(name: name, matching: url) {
+                bundles.append(serialized)
+            }
+        }
+        return bundles
     }
 
     // TODO: fix this
@@ -64,9 +98,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     func phageDataStoreDidChangeBundles() {
         performOnAllPages { page in
-            // TODO: diffing
             page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
-                "updated": [],
+                "updated": [], // TODO
                 "removed": []
             ])
         }
@@ -75,7 +108,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     func phageDataStoreDidChangeBundle(withName name: String) {
         performOnAllPages { page in
             page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
-                "updated": [self.serializeBundle(name: name)],
+                "updated": [], // TODO
                 "removed": []
             ])
         }
@@ -84,9 +117,24 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     // MARK: SFSafariExtensionHandling
 
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
-        // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
-        page.getPropertiesWithCompletionHandler { properties in
-            NSLog("The extension received a message (\(messageName)) from a script injected into (\(String(describing: properties?.url))) with userInfo (\(userInfo ?? [:]))")
+        switch messageName {
+        case "initInjector":
+            guard let urlString = userInfo?["url"] as? String,
+                let sessionID = userInfo?["sessionID"] as? String,
+                let isTopLevel = userInfo?["isTopLevel"] as? Bool else { return }
+
+            guard let url = URL(string: urlString) else { return }
+
+            let bundles = serializeBundlesMatching(url: url)
+            NSLog("received init for page at \(url), sending bundles (\(bundles.count))")
+
+            page.dispatchMessageToScript(withName: "initInjector", userInfo: [
+                "sessionID": sessionID,
+                "bundles": bundles,
+            ])
+        default:
+            NSLog("Script sent unknown message \(messageName)?")
+            break
         }
     }
 

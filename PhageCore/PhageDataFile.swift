@@ -174,8 +174,20 @@ func globToRegex(_ glob: String) -> String {
 }
 
 public struct Section {
-    let rules: [MatchRule]
-    let contents: String
+    public let rules: [MatchRule]
+    public let contents: String
+
+    public func matches(url: URL) -> Bool {
+        if rules.isEmpty {
+            return true
+        }
+        for rule in rules {
+            if rule.match(url) {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 public struct ScriptMeta {

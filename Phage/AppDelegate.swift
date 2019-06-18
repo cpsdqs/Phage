@@ -8,9 +8,12 @@
 
 import Cocoa
 import SwiftUI
+import PhageCore
 
 @NSApplicationMain
 class AppDelegate : NSObject, NSApplicationDelegate {
+
+    var data = PhageData()
 
     var window: NSWindow!
 

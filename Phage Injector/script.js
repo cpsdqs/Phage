@@ -1,4 +1,4 @@
-const injectorSessionID = Math.random().toString(36);
+const injectorSessionID = Math.random().toString(36)
 // contents of this string must not contain single quotes or backslashes (see wrapScript):
 const phageConsoleStyle = 'color:white;background:black;padding:2px;border-radius:4px'
 
@@ -6,7 +6,7 @@ const phageConsoleStyle = 'color:white;background:black;padding:2px;border-radiu
 
 let injectionTries = 0
 
-(function inject () {
+;(function inject () {
     injectionTries++
     if (!window.document) {
         // try again later
