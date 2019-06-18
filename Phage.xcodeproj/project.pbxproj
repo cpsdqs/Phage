@@ -7,346 +7,472 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A34185E2129CB5D00A9B6E0 /* JSSyntaxColoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A34185D2129CB5D00A9B6E0 /* JSSyntaxColoring.swift */; };
-		2A34187B2129E9A200A9B6E0 /* Highlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A3418792129E82A00A9B6E0 /* Highlighter.m */; };
-		2A34187D2129EA7F00A9B6E0 /* libhighlighter.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */; };
-		2A3418802129FFFD00A9B6E0 /* syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A34187F2129FFFD00A9B6E0 /* syntaxes */; };
-		2A6199952129B47500B6CD0E /* Fragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A6199942129B47500B6CD0E /* Fragaria.framework */; };
-		2A6AAD96212AE65500BB9238 /* Fragaria.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2A6199942129B47500B6CD0E /* Fragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2AB3502D2101B50900E5E50A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3502C2101B50900E5E50A /* AppDelegate.swift */; };
-		2AB3502F2101B50900E5E50A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3502E2101B50900E5E50A /* ViewController.swift */; };
-		2AB350312101B50B00E5E50A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AB350302101B50B00E5E50A /* Assets.xcassets */; };
-		2AB350342101B50B00E5E50A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB350322101B50B00E5E50A /* Main.storyboard */; };
-		2AB3503D2101DB9E00E5E50A /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3503C2101DB9E00E5E50A /* DataStorage.swift */; };
-		2ADD8B03210219E600C02DF0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADD8B02210219E600C02DF0 /* Cocoa.framework */; };
-		2ADD8B06210219E600C02DF0 /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD8B05210219E600C02DF0 /* SafariExtensionHandler.swift */; };
-		2ADD8B08210219E600C02DF0 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD8B07210219E600C02DF0 /* SafariExtensionViewController.swift */; };
-		2ADD8B0B210219E600C02DF0 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD8B09210219E600C02DF0 /* SafariExtensionViewController.xib */; };
-		2ADD8B0E210219E700C02DF0 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD8B0D210219E700C02DF0 /* script.js */; };
-		2ADD8B10210219E700C02DF0 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD8B0F210219E700C02DF0 /* ToolbarItemIcon.pdf */; };
-		2ADD8B14210219E700C02DF0 /* PhageExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2ADD8B00210219E600C02DF0 /* PhageExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2ADD8B1921022FD000C02DF0 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3503C2101DB9E00E5E50A /* DataStorage.swift */; };
-		2ADD8B1E210270CD00C02DF0 /* glob.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD8B1D210270CD00C02DF0 /* glob.m */; };
-		2AE109D4212AA5D800EA999B /* libglob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AE109D0212AA4C700EA999B /* libglob.a */; };
-		2AF344C4212842F30010A402 /* ResourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF344C3212842F30010A402 /* ResourceViewController.swift */; };
+		0F31D8F622B7DE26009D305A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F31D8F522B7DE26009D305A /* Cocoa.framework */; };
+		0F31D8F922B7DE26009D305A /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F31D8F822B7DE26009D305A /* SafariExtensionHandler.swift */; };
+		0F31D8FB22B7DE26009D305A /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F31D8FA22B7DE26009D305A /* SafariExtensionViewController.swift */; };
+		0F31D8FE22B7DE26009D305A /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F31D8FC22B7DE26009D305A /* SafariExtensionViewController.xib */; };
+		0F31D90122B7DE26009D305A /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 0F31D90022B7DE26009D305A /* script.js */; };
+		0F31D90322B7DE26009D305A /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 0F31D90222B7DE26009D305A /* ToolbarItemIcon.pdf */; };
+		0F31D90722B7DE26009D305A /* Phage Injector.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 0F31D8F322B7DE26009D305A /* Phage Injector.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0FA5315E22B7D33000715AB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA5315D22B7D33000715AB8 /* AppDelegate.swift */; };
+		0FA5316022B7D33000715AB8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA5315F22B7D33000715AB8 /* ContentView.swift */; };
+		0FA5316222B7D33100715AB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA5316122B7D33100715AB8 /* Assets.xcassets */; };
+		0FA5316522B7D33100715AB8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FA5316422B7D33100715AB8 /* Preview Assets.xcassets */; };
+		0FA5316822B7D33100715AB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FA5316622B7D33100715AB8 /* Main.storyboard */; };
+		0FA5317422B7D33200715AB8 /* PhageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA5317322B7D33200715AB8 /* PhageTests.swift */; };
+		0FA5317F22B7D33200715AB8 /* PhageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA5317E22B7D33200715AB8 /* PhageUITests.swift */; };
+		0FDFB3D522B7EA8200213CC7 /* PhageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */; };
+		0FDFB3DC22B7EA8200213CC7 /* PhageCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3DB22B7EA8200213CC7 /* PhageCoreTests.swift */; };
+		0FDFB3E122B7EA8200213CC7 /* PhageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */; };
+		0FDFB3E222B7EA8200213CC7 /* PhageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0FDFB3EA22B7EA9200213CC7 /* PhageCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */; };
+		0FDFB3EB22B7EA9200213CC7 /* PhageCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0FDFB3F022B7EAF700213CC7 /* PhageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3EF22B7EAF700213CC7 /* PhageData.swift */; };
+		0FDFB3F422B8A10900213CC7 /* PhageDataBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */; };
+		0FDFB3F622B93C7E00213CC7 /* PhageDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2A3418732129E5D700A9B6E0 /* PBXContainerItemProxy */ = {
+		0F31D90522B7DE26009D305A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2AB350212101B50900E5E50A /* Project object */;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2A34186F2129D69100A9B6E0;
-			remoteInfo = libhighlighter;
+			remoteGlobalIDString = 0F31D8F222B7DE26009D305A;
+			remoteInfo = "Phage Injector";
 		};
-		2A50BEE921067D8800443315 /* PBXContainerItemProxy */ = {
+		0FA5317022B7D33200715AB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2AB350212101B50900E5E50A /* Project object */;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2AD8FA4621067C0B004F3A9B;
-			remoteInfo = libglob;
+			remoteGlobalIDString = 0FA5315922B7D33000715AB8;
+			remoteInfo = Phage;
 		};
-		2ADD8B12210219E700C02DF0 /* PBXContainerItemProxy */ = {
+		0FA5317B22B7D33200715AB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2AB350212101B50900E5E50A /* Project object */;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2ADD8AFF210219E600C02DF0;
-			remoteInfo = PhageExtension;
+			remoteGlobalIDString = 0FA5315922B7D33000715AB8;
+			remoteInfo = Phage;
+		};
+		0FDFB3D622B7EA8200213CC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FDFB3CB22B7EA8200213CC7;
+			remoteInfo = PhageCore;
+		};
+		0FDFB3D822B7EA8200213CC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FA5315922B7D33000715AB8;
+			remoteInfo = Phage;
+		};
+		0FDFB3DF22B7EA8200213CC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FDFB3CB22B7EA8200213CC7;
+			remoteInfo = PhageCore;
+		};
+		0FDFB3EC22B7EA9200213CC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FA5315222B7D33000715AB8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FDFB3CB22B7EA8200213CC7;
+			remoteInfo = PhageCore;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2A6AAD95212AE64100BB9238 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2A6AAD96212AE65500BB9238 /* Fragaria.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2ADD8B18210219E700C02DF0 /* Embed App Extensions */ = {
+		0F31D90822B7DE26009D305A /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2ADD8B14210219E700C02DF0 /* PhageExtension.appex in Embed App Extensions */,
+				0F31D90722B7DE26009D305A /* Phage Injector.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3E622B7EA8200213CC7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0FDFB3E222B7EA8200213CC7 /* PhageCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3EE22B7EA9200213CC7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0FDFB3EB22B7EA9200213CC7 /* PhageCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2A34185D2129CB5D00A9B6E0 /* JSSyntaxColoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSSyntaxColoring.swift; sourceTree = "<group>"; };
-		2A34186D2129D64500A9B6E0 /* highlighter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = highlighter; sourceTree = "<group>"; };
-		2A3418762129E67F00A9B6E0 /* libhighlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libhighlighter.h; sourceTree = "<group>"; };
-		2A3418772129E82900A9B6E0 /* Phage-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phage-Bridging-Header.h"; sourceTree = "<group>"; };
-		2A3418782129E82A00A9B6E0 /* Highlighter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Highlighter.h; sourceTree = "<group>"; };
-		2A3418792129E82A00A9B6E0 /* Highlighter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Highlighter.m; sourceTree = "<group>"; };
-		2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libhighlighter.dylib; path = highlighter/target/release/libhighlighter.dylib; sourceTree = "<group>"; };
-		2A34187F2129FFFD00A9B6E0 /* syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = syntaxes; path = highlighter/syntaxes; sourceTree = SOURCE_ROOT; };
-		2A6199942129B47500B6CD0E /* Fragaria.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Fragaria.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A95ABC421027E1F000938CE /* libglob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libglob.h; sourceTree = "<group>"; };
-		2AB350292101B50900E5E50A /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AB3502C2101B50900E5E50A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2AB3502E2101B50900E5E50A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2AB350302101B50B00E5E50A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2AB350332101B50B00E5E50A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2AB350352101B50B00E5E50A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AB350362101B50B00E5E50A /* Phage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Phage.entitlements; sourceTree = "<group>"; };
-		2AB3503C2101DB9E00E5E50A /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
-		2AD8F7F621067313004F3A9B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		2AD8F7F821067322004F3A9B /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		2AD8F7FA2106745D004F3A9B /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		2AD8F7FB21067527004F3A9B /* glob */ = {isa = PBXFileReference; lastKnownFileType = folder; path = glob; sourceTree = "<group>"; };
-		2ADD8B00210219E600C02DF0 /* PhageExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhageExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		2ADD8B02210219E600C02DF0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		2ADD8B05210219E600C02DF0 /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
-		2ADD8B07210219E600C02DF0 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
-		2ADD8B0A210219E600C02DF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
-		2ADD8B0C210219E600C02DF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2ADD8B0D210219E700C02DF0 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
-		2ADD8B0F210219E700C02DF0 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
-		2ADD8B11210219E700C02DF0 /* PhageExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhageExtension.entitlements; sourceTree = "<group>"; };
-		2ADD8B1A2102709F00C02DF0 /* libglob.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglob.dylib; path = glob/target/release/libglob.dylib; sourceTree = "<group>"; };
-		2ADD8B1C210270CD00C02DF0 /* PhageExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhageExtension-Bridging-Header.h"; sourceTree = "<group>"; };
-		2ADD8B1D210270CD00C02DF0 /* glob.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = glob.m; sourceTree = "<group>"; };
-		2ADD8B1F210271D300C02DF0 /* glob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = glob.h; sourceTree = "<group>"; };
-		2AE109D0212AA4C700EA999B /* libglob.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglob.a; path = glob/target/release/libglob.a; sourceTree = "<group>"; };
-		2AE109D2212AA4CC00EA999B /* .cargo-lock */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".cargo-lock"; path = "glob/target/release/.cargo-lock"; sourceTree = "<group>"; };
-		2AF344C3212842F30010A402 /* ResourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewController.swift; sourceTree = "<group>"; };
+		0F31D8F322B7DE26009D305A /* Phage Injector.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Phage Injector.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F31D8F522B7DE26009D305A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		0F31D8F822B7DE26009D305A /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
+		0F31D8FA22B7DE26009D305A /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
+		0F31D8FD22B7DE26009D305A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
+		0F31D8FF22B7DE26009D305A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F31D90022B7DE26009D305A /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		0F31D90222B7DE26009D305A /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		0F31D90422B7DE26009D305A /* Phage_Injector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Phage_Injector.entitlements; sourceTree = "<group>"; };
+		0FA5315A22B7D33000715AB8 /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FA5315D22B7D33000715AB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0FA5315F22B7D33000715AB8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0FA5316122B7D33100715AB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0FA5316422B7D33100715AB8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0FA5316722B7D33100715AB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0FA5316922B7D33200715AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FA5316A22B7D33200715AB8 /* Phage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Phage.entitlements; sourceTree = "<group>"; };
+		0FA5316F22B7D33200715AB8 /* PhageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FA5317322B7D33200715AB8 /* PhageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageTests.swift; sourceTree = "<group>"; };
+		0FA5317522B7D33200715AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FA5317A22B7D33200715AB8 /* PhageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FA5317E22B7D33200715AB8 /* PhageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageUITests.swift; sourceTree = "<group>"; };
+		0FA5318022B7D33200715AB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PhageCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FDFB3CF22B7EA8200213CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FDFB3D422B7EA8200213CC7 /* PhageCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhageCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FDFB3DB22B7EA8200213CC7 /* PhageCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageCoreTests.swift; sourceTree = "<group>"; };
+		0FDFB3DD22B7EA8200213CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FDFB3EF22B7EAF700213CC7 /* PhageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageData.swift; sourceTree = "<group>"; };
+		0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDataBundle.swift; sourceTree = "<group>"; };
+		0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDataFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2AB350262101B50900E5E50A /* Frameworks */ = {
+		0F31D8F022B7DE26009D305A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A6199952129B47500B6CD0E /* Fragaria.framework in Frameworks */,
-				2A34187D2129EA7F00A9B6E0 /* libhighlighter.dylib in Frameworks */,
+				0F31D8F622B7DE26009D305A /* Cocoa.framework in Frameworks */,
+				0FDFB3EA22B7EA9200213CC7 /* PhageCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2ADD8AFD210219E600C02DF0 /* Frameworks */ = {
+		0FA5315722B7D33000715AB8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ADD8B03210219E600C02DF0 /* Cocoa.framework in Frameworks */,
-				2AE109D4212AA5D800EA999B /* libglob.a in Frameworks */,
+				0FDFB3E122B7EA8200213CC7 /* PhageCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FA5316C22B7D33200715AB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FA5317722B7D33200715AB8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3C922B7EA8200213CC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3D122B7EA8200213CC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FDFB3D522B7EA8200213CC7 /* PhageCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A3418752129E66E00A9B6E0 /* highlighter */ = {
+		0F31D8F422B7DE26009D305A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2A3418762129E67F00A9B6E0 /* libhighlighter.h */,
-				2A3418782129E82A00A9B6E0 /* Highlighter.h */,
-				2A3418792129E82A00A9B6E0 /* Highlighter.m */,
-				2A3418772129E82900A9B6E0 /* Phage-Bridging-Header.h */,
-			);
-			path = highlighter;
-			sourceTree = "<group>";
-		};
-		2AB350202101B50900E5E50A = {
-			isa = PBXGroup;
-			children = (
-				2AD8F7F3210672ED004F3A9B /* Meta */,
-				2AB3502B2101B50900E5E50A /* Phage */,
-				2ADD8B04210219E600C02DF0 /* PhageExtension */,
-				2AD8F7FB21067527004F3A9B /* glob */,
-				2A34186D2129D64500A9B6E0 /* highlighter */,
-				2ADD8B01210219E600C02DF0 /* Frameworks */,
-				2AB3502A2101B50900E5E50A /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		2AB3502A2101B50900E5E50A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2AB350292101B50900E5E50A /* Phage.app */,
-				2ADD8B00210219E600C02DF0 /* PhageExtension.appex */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2AB3502B2101B50900E5E50A /* Phage */ = {
-			isa = PBXGroup;
-			children = (
-				2AB3502C2101B50900E5E50A /* AppDelegate.swift */,
-				2AB3502E2101B50900E5E50A /* ViewController.swift */,
-				2AF344C3212842F30010A402 /* ResourceViewController.swift */,
-				2AB3503C2101DB9E00E5E50A /* DataStorage.swift */,
-				2AB350302101B50B00E5E50A /* Assets.xcassets */,
-				2AB350322101B50B00E5E50A /* Main.storyboard */,
-				2AB350352101B50B00E5E50A /* Info.plist */,
-				2AB350362101B50B00E5E50A /* Phage.entitlements */,
-				2A34185D2129CB5D00A9B6E0 /* JSSyntaxColoring.swift */,
-				2A34187F2129FFFD00A9B6E0 /* syntaxes */,
-				2A3418752129E66E00A9B6E0 /* highlighter */,
-			);
-			path = Phage;
-			sourceTree = "<group>";
-		};
-		2AD8F7F3210672ED004F3A9B /* Meta */ = {
-			isa = PBXGroup;
-			children = (
-				2AD8F7FA2106745D004F3A9B /* .gitignore */,
-				2AD8F7F621067313004F3A9B /* README.md */,
-				2AD8F7F821067322004F3A9B /* LICENSE.md */,
-			);
-			name = Meta;
-			sourceTree = "<group>";
-		};
-		2ADD8B01210219E600C02DF0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2A6199942129B47500B6CD0E /* Fragaria.framework */,
-				2AE109D0212AA4C700EA999B /* libglob.a */,
-				2AE109D2212AA4CC00EA999B /* .cargo-lock */,
-				2A34187C2129EA7F00A9B6E0 /* libhighlighter.dylib */,
-				2ADD8B1A2102709F00C02DF0 /* libglob.dylib */,
-				2ADD8B02210219E600C02DF0 /* Cocoa.framework */,
+				0F31D8F522B7DE26009D305A /* Cocoa.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2ADD8B04210219E600C02DF0 /* PhageExtension */ = {
+		0F31D8F722B7DE26009D305A /* Phage Injector */ = {
 			isa = PBXGroup;
 			children = (
-				2ADD8B05210219E600C02DF0 /* SafariExtensionHandler.swift */,
-				2ADD8B07210219E600C02DF0 /* SafariExtensionViewController.swift */,
-				2ADD8B09210219E600C02DF0 /* SafariExtensionViewController.xib */,
-				2ADD8B0C210219E600C02DF0 /* Info.plist */,
-				2ADD8B0D210219E700C02DF0 /* script.js */,
-				2ADD8B0F210219E700C02DF0 /* ToolbarItemIcon.pdf */,
-				2A95ABC421027E1F000938CE /* libglob.h */,
-				2ADD8B1F210271D300C02DF0 /* glob.h */,
-				2ADD8B1D210270CD00C02DF0 /* glob.m */,
-				2ADD8B1C210270CD00C02DF0 /* PhageExtension-Bridging-Header.h */,
-				2ADD8B11210219E700C02DF0 /* PhageExtension.entitlements */,
+				0F31D8F822B7DE26009D305A /* SafariExtensionHandler.swift */,
+				0F31D8FA22B7DE26009D305A /* SafariExtensionViewController.swift */,
+				0F31D8FC22B7DE26009D305A /* SafariExtensionViewController.xib */,
+				0F31D8FF22B7DE26009D305A /* Info.plist */,
+				0F31D90022B7DE26009D305A /* script.js */,
+				0F31D90222B7DE26009D305A /* ToolbarItemIcon.pdf */,
+				0F31D90422B7DE26009D305A /* Phage_Injector.entitlements */,
 			);
-			path = PhageExtension;
+			path = "Phage Injector";
+			sourceTree = "<group>";
+		};
+		0FA5315122B7D33000715AB8 = {
+			isa = PBXGroup;
+			children = (
+				0FA5315C22B7D33000715AB8 /* Phage */,
+				0F31D8F722B7DE26009D305A /* Phage Injector */,
+				0FDFB3CD22B7EA8200213CC7 /* PhageCore */,
+				0FA5317222B7D33200715AB8 /* PhageTests */,
+				0FA5317D22B7D33200715AB8 /* PhageUITests */,
+				0FDFB3DA22B7EA8200213CC7 /* PhageCoreTests */,
+				0F31D8F422B7DE26009D305A /* Frameworks */,
+				0FA5315B22B7D33000715AB8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0FA5315B22B7D33000715AB8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0FA5315A22B7D33000715AB8 /* Phage.app */,
+				0FA5316F22B7D33200715AB8 /* PhageTests.xctest */,
+				0FA5317A22B7D33200715AB8 /* PhageUITests.xctest */,
+				0F31D8F322B7DE26009D305A /* Phage Injector.appex */,
+				0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */,
+				0FDFB3D422B7EA8200213CC7 /* PhageCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0FA5315C22B7D33000715AB8 /* Phage */ = {
+			isa = PBXGroup;
+			children = (
+				0FA5315D22B7D33000715AB8 /* AppDelegate.swift */,
+				0FA5315F22B7D33000715AB8 /* ContentView.swift */,
+				0FA5316122B7D33100715AB8 /* Assets.xcassets */,
+				0FA5316622B7D33100715AB8 /* Main.storyboard */,
+				0FA5316922B7D33200715AB8 /* Info.plist */,
+				0FA5316A22B7D33200715AB8 /* Phage.entitlements */,
+				0FA5316322B7D33100715AB8 /* Preview Content */,
+			);
+			path = Phage;
+			sourceTree = "<group>";
+		};
+		0FA5316322B7D33100715AB8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0FA5316422B7D33100715AB8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0FA5317222B7D33200715AB8 /* PhageTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FA5317322B7D33200715AB8 /* PhageTests.swift */,
+				0FA5317522B7D33200715AB8 /* Info.plist */,
+			);
+			path = PhageTests;
+			sourceTree = "<group>";
+		};
+		0FA5317D22B7D33200715AB8 /* PhageUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0FA5317E22B7D33200715AB8 /* PhageUITests.swift */,
+				0FA5318022B7D33200715AB8 /* Info.plist */,
+			);
+			path = PhageUITests;
+			sourceTree = "<group>";
+		};
+		0FDFB3CD22B7EA8200213CC7 /* PhageCore */ = {
+			isa = PBXGroup;
+			children = (
+				0FDFB3CF22B7EA8200213CC7 /* Info.plist */,
+				0FDFB3EF22B7EAF700213CC7 /* PhageData.swift */,
+				0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */,
+				0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */,
+			);
+			path = PhageCore;
+			sourceTree = "<group>";
+		};
+		0FDFB3DA22B7EA8200213CC7 /* PhageCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FDFB3DB22B7EA8200213CC7 /* PhageCoreTests.swift */,
+				0FDFB3DD22B7EA8200213CC7 /* Info.plist */,
+			);
+			path = PhageCoreTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXLegacyTarget section */
-		2A34186F2129D69100A9B6E0 /* libhighlighter */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "\"$(SRCROOT)/glob/build_xcode.sh\"";
-			buildConfigurationList = 2A3418702129D69100A9B6E0 /* Build configuration list for PBXLegacyTarget "libhighlighter" */;
-			buildPhases = (
+/* Begin PBXHeadersBuildPhase section */
+		0FDFB3C722B7EA8200213CC7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
-			buildToolPath = /bin/sh;
-			buildWorkingDirectory = highlighter;
-			dependencies = (
-			);
-			name = libhighlighter;
-			passBuildSettingsInEnvironment = 1;
-			productName = libsyntect;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2AD8FA4621067C0B004F3A9B /* libglob */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "\"$(SRCROOT)/glob/build_xcode.sh\"";
-			buildConfigurationList = 2AD8FA4721067C0B004F3A9B /* Build configuration list for PBXLegacyTarget "libglob" */;
-			buildPhases = (
-			);
-			buildToolPath = /bin/sh;
-			buildWorkingDirectory = glob;
-			dependencies = (
-			);
-			name = libglob;
-			passBuildSettingsInEnvironment = 1;
-			productName = glob;
-		};
-/* End PBXLegacyTarget section */
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2AB350282101B50900E5E50A /* Phage */ = {
+		0F31D8F222B7DE26009D305A /* Phage Injector */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2AB350392101B50B00E5E50A /* Build configuration list for PBXNativeTarget "Phage" */;
+			buildConfigurationList = 0F31D90B22B7DE26009D305A /* Build configuration list for PBXNativeTarget "Phage Injector" */;
 			buildPhases = (
-				2AB350252101B50900E5E50A /* Sources */,
-				2A6AAD95212AE64100BB9238 /* CopyFiles */,
-				2AB350262101B50900E5E50A /* Frameworks */,
-				2AB350272101B50900E5E50A /* Resources */,
-				2ADD8B18210219E700C02DF0 /* Embed App Extensions */,
+				0F31D8EF22B7DE26009D305A /* Sources */,
+				0F31D8F022B7DE26009D305A /* Frameworks */,
+				0F31D8F122B7DE26009D305A /* Resources */,
+				0FDFB3EE22B7EA9200213CC7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2A3418742129E5D700A9B6E0 /* PBXTargetDependency */,
-				2ADD8B13210219E700C02DF0 /* PBXTargetDependency */,
+				0FDFB3ED22B7EA9200213CC7 /* PBXTargetDependency */,
+			);
+			name = "Phage Injector";
+			productName = "Phage Injector";
+			productReference = 0F31D8F322B7DE26009D305A /* Phage Injector.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		0FA5315922B7D33000715AB8 /* Phage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FA5318322B7D33200715AB8 /* Build configuration list for PBXNativeTarget "Phage" */;
+			buildPhases = (
+				0FA5315622B7D33000715AB8 /* Sources */,
+				0FA5315722B7D33000715AB8 /* Frameworks */,
+				0FA5315822B7D33000715AB8 /* Resources */,
+				0F31D90822B7DE26009D305A /* Embed App Extensions */,
+				0FDFB3E622B7EA8200213CC7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F31D90622B7DE26009D305A /* PBXTargetDependency */,
+				0FDFB3E022B7EA8200213CC7 /* PBXTargetDependency */,
 			);
 			name = Phage;
 			productName = Phage;
-			productReference = 2AB350292101B50900E5E50A /* Phage.app */;
+			productReference = 0FA5315A22B7D33000715AB8 /* Phage.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2ADD8AFF210219E600C02DF0 /* PhageExtension */ = {
+		0FA5316E22B7D33200715AB8 /* PhageTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2ADD8B15210219E700C02DF0 /* Build configuration list for PBXNativeTarget "PhageExtension" */;
+			buildConfigurationList = 0FA5318622B7D33200715AB8 /* Build configuration list for PBXNativeTarget "PhageTests" */;
 			buildPhases = (
-				2ADD8AFC210219E600C02DF0 /* Sources */,
-				2ADD8AFD210219E600C02DF0 /* Frameworks */,
-				2ADD8AFE210219E600C02DF0 /* Resources */,
+				0FA5316B22B7D33200715AB8 /* Sources */,
+				0FA5316C22B7D33200715AB8 /* Frameworks */,
+				0FA5316D22B7D33200715AB8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2A50BEEA21067D8800443315 /* PBXTargetDependency */,
+				0FA5317122B7D33200715AB8 /* PBXTargetDependency */,
 			);
-			name = PhageExtension;
-			productName = PhageExtension;
-			productReference = 2ADD8B00210219E600C02DF0 /* PhageExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
+			name = PhageTests;
+			productName = PhageTests;
+			productReference = 0FA5316F22B7D33200715AB8 /* PhageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0FA5317922B7D33200715AB8 /* PhageUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FA5318922B7D33200715AB8 /* Build configuration list for PBXNativeTarget "PhageUITests" */;
+			buildPhases = (
+				0FA5317622B7D33200715AB8 /* Sources */,
+				0FA5317722B7D33200715AB8 /* Frameworks */,
+				0FA5317822B7D33200715AB8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FA5317C22B7D33200715AB8 /* PBXTargetDependency */,
+			);
+			name = PhageUITests;
+			productName = PhageUITests;
+			productReference = 0FA5317A22B7D33200715AB8 /* PhageUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		0FDFB3CB22B7EA8200213CC7 /* PhageCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FDFB3E322B7EA8200213CC7 /* Build configuration list for PBXNativeTarget "PhageCore" */;
+			buildPhases = (
+				0FDFB3C722B7EA8200213CC7 /* Headers */,
+				0FDFB3C822B7EA8200213CC7 /* Sources */,
+				0FDFB3C922B7EA8200213CC7 /* Frameworks */,
+				0FDFB3CA22B7EA8200213CC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhageCore;
+			productName = PhageCore;
+			productReference = 0FDFB3CC22B7EA8200213CC7 /* PhageCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		0FDFB3D322B7EA8200213CC7 /* PhageCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FDFB3E722B7EA8200213CC7 /* Build configuration list for PBXNativeTarget "PhageCoreTests" */;
+			buildPhases = (
+				0FDFB3D022B7EA8200213CC7 /* Sources */,
+				0FDFB3D122B7EA8200213CC7 /* Frameworks */,
+				0FDFB3D222B7EA8200213CC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FDFB3D722B7EA8200213CC7 /* PBXTargetDependency */,
+				0FDFB3D922B7EA8200213CC7 /* PBXTargetDependency */,
+			);
+			name = PhageCoreTests;
+			productName = PhageCoreTests;
+			productReference = 0FDFB3D422B7EA8200213CC7 /* PhageCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2AB350212101B50900E5E50A /* Project object */ = {
+		0FA5315222B7D33000715AB8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = cpsdqs;
 				TargetAttributes = {
-					2A34186F2129D69100A9B6E0 = {
-						CreatedOnToolsVersion = 10.0;
+					0F31D8F222B7DE26009D305A = {
+						CreatedOnToolsVersion = 11.0;
 					};
-					2AB350282101B50900E5E50A = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
-							};
-							com.apple.Sandbox = {
-								enabled = 1;
-							};
-						};
+					0FA5315922B7D33000715AB8 = {
+						CreatedOnToolsVersion = 11.0;
 					};
-					2AD8FA4621067C0B004F3A9B = {
-						CreatedOnToolsVersion = 10.0;
+					0FA5316E22B7D33200715AB8 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 0FA5315922B7D33000715AB8;
 					};
-					2ADD8AFF210219E600C02DF0 = {
-						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.Mac = {
-								enabled = 1;
-							};
-						};
+					0FA5317922B7D33200715AB8 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 0FA5315922B7D33000715AB8;
+					};
+					0FDFB3CB22B7EA8200213CC7 = {
+						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
+					};
+					0FDFB3D322B7EA8200213CC7 = {
+						CreatedOnToolsVersion = 11.0;
 					};
 				};
 			};
-			buildConfigurationList = 2AB350242101B50900E5E50A /* Build configuration list for PBXProject "Phage" */;
+			buildConfigurationList = 0FA5315522B7D33000715AB8 /* Build configuration list for PBXProject "Phage" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -354,133 +480,226 @@
 				en,
 				Base,
 			);
-			mainGroup = 2AB350202101B50900E5E50A;
-			productRefGroup = 2AB3502A2101B50900E5E50A /* Products */;
+			mainGroup = 0FA5315122B7D33000715AB8;
+			productRefGroup = 0FA5315B22B7D33000715AB8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2AB350282101B50900E5E50A /* Phage */,
-				2ADD8AFF210219E600C02DF0 /* PhageExtension */,
-				2AD8FA4621067C0B004F3A9B /* libglob */,
-				2A34186F2129D69100A9B6E0 /* libhighlighter */,
+				0FA5315922B7D33000715AB8 /* Phage */,
+				0F31D8F222B7DE26009D305A /* Phage Injector */,
+				0FA5316E22B7D33200715AB8 /* PhageTests */,
+				0FA5317922B7D33200715AB8 /* PhageUITests */,
+				0FDFB3CB22B7EA8200213CC7 /* PhageCore */,
+				0FDFB3D322B7EA8200213CC7 /* PhageCoreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2AB350272101B50900E5E50A /* Resources */ = {
+		0F31D8F122B7DE26009D305A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A3418802129FFFD00A9B6E0 /* syntaxes in Resources */,
-				2AB350312101B50B00E5E50A /* Assets.xcassets in Resources */,
-				2AB350342101B50B00E5E50A /* Main.storyboard in Resources */,
+				0F31D90322B7DE26009D305A /* ToolbarItemIcon.pdf in Resources */,
+				0F31D8FE22B7DE26009D305A /* SafariExtensionViewController.xib in Resources */,
+				0F31D90122B7DE26009D305A /* script.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2ADD8AFE210219E600C02DF0 /* Resources */ = {
+		0FA5315822B7D33000715AB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ADD8B10210219E700C02DF0 /* ToolbarItemIcon.pdf in Resources */,
-				2ADD8B0B210219E600C02DF0 /* SafariExtensionViewController.xib in Resources */,
-				2ADD8B0E210219E700C02DF0 /* script.js in Resources */,
+				0FA5316822B7D33100715AB8 /* Main.storyboard in Resources */,
+				0FA5316522B7D33100715AB8 /* Preview Assets.xcassets in Resources */,
+				0FA5316222B7D33100715AB8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FA5316D22B7D33200715AB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FA5317822B7D33200715AB8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3CA22B7EA8200213CC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3D222B7EA8200213CC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2AB350252101B50900E5E50A /* Sources */ = {
+		0F31D8EF22B7DE26009D305A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AB3503D2101DB9E00E5E50A /* DataStorage.swift in Sources */,
-				2A34185E2129CB5D00A9B6E0 /* JSSyntaxColoring.swift in Sources */,
-				2AB3502F2101B50900E5E50A /* ViewController.swift in Sources */,
-				2AF344C4212842F30010A402 /* ResourceViewController.swift in Sources */,
-				2AB3502D2101B50900E5E50A /* AppDelegate.swift in Sources */,
-				2A34187B2129E9A200A9B6E0 /* Highlighter.m in Sources */,
+				0F31D8FB22B7DE26009D305A /* SafariExtensionViewController.swift in Sources */,
+				0F31D8F922B7DE26009D305A /* SafariExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2ADD8AFC210219E600C02DF0 /* Sources */ = {
+		0FA5315622B7D33000715AB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ADD8B1921022FD000C02DF0 /* DataStorage.swift in Sources */,
-				2ADD8B1E210270CD00C02DF0 /* glob.m in Sources */,
-				2ADD8B08210219E600C02DF0 /* SafariExtensionViewController.swift in Sources */,
-				2ADD8B06210219E600C02DF0 /* SafariExtensionHandler.swift in Sources */,
+				0FA5316022B7D33000715AB8 /* ContentView.swift in Sources */,
+				0FA5315E22B7D33000715AB8 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FA5316B22B7D33200715AB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FA5317422B7D33200715AB8 /* PhageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FA5317622B7D33200715AB8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FA5317F22B7D33200715AB8 /* PhageUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3C822B7EA8200213CC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FDFB3F022B7EAF700213CC7 /* PhageData.swift in Sources */,
+				0FDFB3F622B93C7E00213CC7 /* PhageDataFile.swift in Sources */,
+				0FDFB3F422B8A10900213CC7 /* PhageDataBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FDFB3D022B7EA8200213CC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FDFB3DC22B7EA8200213CC7 /* PhageCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2A3418742129E5D700A9B6E0 /* PBXTargetDependency */ = {
+		0F31D90622B7DE26009D305A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2A34186F2129D69100A9B6E0 /* libhighlighter */;
-			targetProxy = 2A3418732129E5D700A9B6E0 /* PBXContainerItemProxy */;
+			target = 0F31D8F222B7DE26009D305A /* Phage Injector */;
+			targetProxy = 0F31D90522B7DE26009D305A /* PBXContainerItemProxy */;
 		};
-		2A50BEEA21067D8800443315 /* PBXTargetDependency */ = {
+		0FA5317122B7D33200715AB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2AD8FA4621067C0B004F3A9B /* libglob */;
-			targetProxy = 2A50BEE921067D8800443315 /* PBXContainerItemProxy */;
+			target = 0FA5315922B7D33000715AB8 /* Phage */;
+			targetProxy = 0FA5317022B7D33200715AB8 /* PBXContainerItemProxy */;
 		};
-		2ADD8B13210219E700C02DF0 /* PBXTargetDependency */ = {
+		0FA5317C22B7D33200715AB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2ADD8AFF210219E600C02DF0 /* PhageExtension */;
-			targetProxy = 2ADD8B12210219E700C02DF0 /* PBXContainerItemProxy */;
+			target = 0FA5315922B7D33000715AB8 /* Phage */;
+			targetProxy = 0FA5317B22B7D33200715AB8 /* PBXContainerItemProxy */;
+		};
+		0FDFB3D722B7EA8200213CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FDFB3CB22B7EA8200213CC7 /* PhageCore */;
+			targetProxy = 0FDFB3D622B7EA8200213CC7 /* PBXContainerItemProxy */;
+		};
+		0FDFB3D922B7EA8200213CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FA5315922B7D33000715AB8 /* Phage */;
+			targetProxy = 0FDFB3D822B7EA8200213CC7 /* PBXContainerItemProxy */;
+		};
+		0FDFB3E022B7EA8200213CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FDFB3CB22B7EA8200213CC7 /* PhageCore */;
+			targetProxy = 0FDFB3DF22B7EA8200213CC7 /* PBXContainerItemProxy */;
+		};
+		0FDFB3ED22B7EA9200213CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FDFB3CB22B7EA8200213CC7 /* PhageCore */;
+			targetProxy = 0FDFB3EC22B7EA9200213CC7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		2AB350322101B50B00E5E50A /* Main.storyboard */ = {
+		0F31D8FC22B7DE26009D305A /* SafariExtensionViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2AB350332101B50B00E5E50A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2ADD8B09210219E600C02DF0 /* SafariExtensionViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ADD8B0A210219E600C02DF0 /* Base */,
+				0F31D8FD22B7DE26009D305A /* Base */,
 			);
 			name = SafariExtensionViewController.xib;
+			sourceTree = "<group>";
+		};
+		0FA5316622B7D33100715AB8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0FA5316722B7D33100715AB8 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2A3418712129D69100A9B6E0 /* Debug */ = {
+		0F31D90922B7DE26009D305A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Phage Injector/Phage_Injector.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Phage Injector/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.cloudwithlightning.Phage.Phage-Injector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		2A3418722129D69100A9B6E0 /* Release */ = {
+		0F31D90A22B7DE26009D305A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Phage Injector/Phage_Injector.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "Phage Injector/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.cloudwithlightning.Phage.Phage-Injector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		2AB350372101B50B00E5E50A /* Debug */ = {
+		0FA5318122B7D33200715AB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -512,7 +731,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -531,7 +749,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -541,7 +759,7 @@
 			};
 			name = Debug;
 		};
-		2AB350382101B50B00E5E50A /* Release */ = {
+		0FA5318222B7D33200715AB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -573,7 +791,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -586,7 +803,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -595,196 +812,300 @@
 			};
 			name = Release;
 		};
-		2AB3503A2101B50B00E5E50A /* Debug */ = {
+		0FA5318422B7D33200715AB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Phage/Phage.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "Phage/Preview\\ Content";
 				DEVELOPMENT_TEAM = S2DETNM9XB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Phage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/highlighter/target/release",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.Phage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Phage/highlighter/Phage-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		2AB3503B2101B50B00E5E50A /* Release */ = {
+		0FA5318522B7D33200715AB8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Phage/Phage.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "Phage/Preview\\ Content";
 				DEVELOPMENT_TEAM = S2DETNM9XB;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Phage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/highlighter/target/release",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.Phage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Phage/highlighter/Phage-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		2AD8FA4821067C0B004F3A9B /* Debug */ = {
+		0FA5318722B7D33200715AB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEBUGGING_SYMBOLS = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		2AD8FA4921067C0B004F3A9B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		2ADD8B16210219E700C02DF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = PhageExtension/PhageExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S2DETNM9XB;
-				INFOPLIST_FILE = PhageExtension/Info.plist;
+				INFOPLIST_FILE = PhageTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
+					"@loader_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/glob/target/release",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.Phage.PhageExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phage.app/Contents/MacOS/Phage";
+			};
+			name = Debug;
+		};
+		0FA5318822B7D33200715AB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				INFOPLIST_FILE = PhageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Phage.app/Contents/MacOS/Phage";
+			};
+			name = Release;
+		};
+		0FA5318A22B7D33200715AB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				INFOPLIST_FILE = PhageUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Phage;
+			};
+			name = Debug;
+		};
+		0FA5318B22B7D33200715AB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				INFOPLIST_FILE = PhageUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Phage;
+			};
+			name = Release;
+		};
+		0FDFB3E422B7EA8200213CC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = PhageCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PhageExtension/PhageExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		2ADD8B17210219E700C02DF0 /* Release */ = {
+		0FDFB3E522B7EA8200213CC7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = PhageExtension/PhageExtension.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = S2DETNM9XB;
-				INFOPLIST_FILE = PhageExtension/Info.plist;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = PhageCore/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
-					"@executable_path/../../../../Frameworks",
+					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/glob/target/release",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.Phage.PhageExtension;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PhageExtension/PhageExtension-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0FDFB3E822B7EA8200213CC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				INFOPLIST_FILE = PhageCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		0FDFB3E922B7EA8200213CC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S2DETNM9XB;
+				INFOPLIST_FILE = PhageCoreTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.cloudwithlightning.PhageCoreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2A3418702129D69100A9B6E0 /* Build configuration list for PBXLegacyTarget "libhighlighter" */ = {
+		0F31D90B22B7DE26009D305A /* Build configuration list for PBXNativeTarget "Phage Injector" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2A3418712129D69100A9B6E0 /* Debug */,
-				2A3418722129D69100A9B6E0 /* Release */,
+				0F31D90922B7DE26009D305A /* Debug */,
+				0F31D90A22B7DE26009D305A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AB350242101B50900E5E50A /* Build configuration list for PBXProject "Phage" */ = {
+		0FA5315522B7D33000715AB8 /* Build configuration list for PBXProject "Phage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AB350372101B50B00E5E50A /* Debug */,
-				2AB350382101B50B00E5E50A /* Release */,
+				0FA5318122B7D33200715AB8 /* Debug */,
+				0FA5318222B7D33200715AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AB350392101B50B00E5E50A /* Build configuration list for PBXNativeTarget "Phage" */ = {
+		0FA5318322B7D33200715AB8 /* Build configuration list for PBXNativeTarget "Phage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AB3503A2101B50B00E5E50A /* Debug */,
-				2AB3503B2101B50B00E5E50A /* Release */,
+				0FA5318422B7D33200715AB8 /* Debug */,
+				0FA5318522B7D33200715AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2AD8FA4721067C0B004F3A9B /* Build configuration list for PBXLegacyTarget "libglob" */ = {
+		0FA5318622B7D33200715AB8 /* Build configuration list for PBXNativeTarget "PhageTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2AD8FA4821067C0B004F3A9B /* Debug */,
-				2AD8FA4921067C0B004F3A9B /* Release */,
+				0FA5318722B7D33200715AB8 /* Debug */,
+				0FA5318822B7D33200715AB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2ADD8B15210219E700C02DF0 /* Build configuration list for PBXNativeTarget "PhageExtension" */ = {
+		0FA5318922B7D33200715AB8 /* Build configuration list for PBXNativeTarget "PhageUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2ADD8B16210219E700C02DF0 /* Debug */,
-				2ADD8B17210219E700C02DF0 /* Release */,
+				0FA5318A22B7D33200715AB8 /* Debug */,
+				0FA5318B22B7D33200715AB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0FDFB3E322B7EA8200213CC7 /* Build configuration list for PBXNativeTarget "PhageCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FDFB3E422B7EA8200213CC7 /* Debug */,
+				0FDFB3E522B7EA8200213CC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0FDFB3E722B7EA8200213CC7 /* Build configuration list for PBXNativeTarget "PhageCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FDFB3E822B7EA8200213CC7 /* Debug */,
+				0FDFB3E922B7EA8200213CC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2AB350212101B50900E5E50A /* Project object */;
+	rootObject = 0FA5315222B7D33000715AB8 /* Project object */;
 }

@@ -2,19 +2,32 @@
 //  AppDelegate.swift
 //  Phage
 //
-//  Created by cpsd on 2018-07-20.
-//  Copyright © 2018 cpsdqs. All rights reserved.
+//  Created by cpsdqs on 2019-06-17.
+//  Copyright © 2019 cpsdqs. All rights reserved.
 //
 
 import Cocoa
+import SwiftUI
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate : NSObject, NSApplicationDelegate {
 
-    func application(_ application: NSApplication, open urls: [URL]) {}
+    var window: NSWindow!
 
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
+        window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            backing: .buffered, defer: false)
+        window.center()
+        window.setFrameAutosaveName("Main Window")
+
+        window.contentView = NSHostingView(rootView: ContentView())
+
+        window.makeKeyAndOrderFront(nil)
+    }
+
+    func applicationWillTerminate(_ aNotification: Notification) {
     }
 
 }
