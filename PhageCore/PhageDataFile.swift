@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-public class PhageDataFile : NSObject {
+public class PhageDataFile : NSObject, Identifiable {
     public let url: URL
     public let type: FileType
 
@@ -69,6 +70,13 @@ public class PhageDataFile : NSObject {
         return nil
     }
 
+    // MARK: - Identifiable
+    public var id: URL {
+        get {
+            return url
+        }
+    }
+
     public enum FileType {
         case javascript
         case stylesheet
@@ -103,6 +111,7 @@ public enum MatchRule: Equatable {
         case .prefix(let pattern):
             return url.absoluteString.starts(with: pattern)
         case .domain(let pattern):
+            // FIXME: does not match subdomains
             return url.host == pattern
         case .regexp(let pattern):
             if let regexp = try? NSRegularExpression(pattern: pattern, options: .init()) {

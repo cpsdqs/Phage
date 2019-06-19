@@ -14,24 +14,20 @@ import Combine
 public class PhageData : NSObject, NSFilePresenter, BindableObject {
 
     public override init() {
-        didChange = PhageDataPublisher()
         containerURL = FileManager.default
             .containerURL(forSecurityApplicationGroupIdentifier: Self.appGroupID)!
             .appendingPathComponent("bundles")
 
         super.init()
-        didChange.owner = self
 
-        fileCoordinator = NSFileCoordinator(filePresenter: self)
+        NSFileCoordinator.addFilePresenter(self)
 
         reload()
     }
 
     // MARK: - BindableObject
 
-    public typealias PublisherType = PhageDataPublisher
-
-    public var didChange: PhageDataPublisher
+    public var didChange = PassthroughSubject<Event, Never>()
 
     // MARK: - Bundle Handling
 
@@ -53,7 +49,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             }
         }
 
-        didChange.emitToAllSubscribers(event: .bundlesReloaded)
+        didChange.send(.bundlesReloaded)
     }
 
     /// Returns the enclosing bundle’s URL and the remaining subpath.
@@ -84,9 +80,11 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             if bundles[name] == nil {
                 if let bundle = PhageDataBundle(at: bundleURL) {
                     bundles[name] = bundle
-                    didChange.emitToAllSubscribers(event: .addedBundle(name))
+                    didChange.send(.addedBundle(name))
                     return true
                 }
+            } else {
+                return true
             }
         }
         return false
@@ -98,7 +96,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             bundles.removeValue(forKey: name)
         }
 
-        didChange.emitToAllSubscribers(event: .deletedBundle(name))
+        didChange.send(.deletedBundle(name))
     }
 
     func didDeleteBundleFile(at bundleURL: URL, subPath: [String]) {
@@ -107,7 +105,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             if subPath.count == 1 {
                 // TODO: what about deeper items?
                 bundles[name]!.deletedFile(at: bundleURL.appendingPathComponent(subPath[0]))
-                didChange.emitToAllSubscribers(event: .changedBundle(name))
+                didChange.send(.changedBundle(name))
             }
         }
     }
@@ -118,14 +116,12 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             if subPath.count == 1 {
                 // TODO: what about deeper items?
                 bundles[name]!.updatedFile(at: bundleURL.appendingPathComponent(subPath[0]))
-                didChange.emitToAllSubscribers(event: .changedBundle(name))
+                didChange.send(.changedBundle(name))
             }
         }
     }
 
     // MARK: - NSFilePresenter
-
-    public var fileCoordinator: NSFileCoordinator!
 
     public static let appGroupID = Bundle.main.infoDictionary!["TeamIdentifierPrefix"] as! String + "net.cloudwithlightning.phage"
     public let containerURL: URL
@@ -167,6 +163,12 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
         presentedSubitemDidChange(at: newURL)
     }
     public func presentedSubitemDidChange(at url: URL) {
+        // may have been deleted instead
+        if !FileManager.default.fileExists(atPath: url.path) {
+            accommodatePresentedSubitemDeletion(at: url, completionHandler: { _ in })
+            return
+        }
+
         if let (bundleURL, subPath) = bundleURLAndSubpath(enclosing: url) {
             if subPath.isEmpty {
                 // a bundle was added (or changed, somehow?)
@@ -176,70 +178,12 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             }
         }
     }
-}
 
-/// A publisher associated with a PhageData object.
-public class PhageDataPublisher : Publisher {
-
-    public typealias Output = PhageDataEvent
-
-    public typealias Failure = Never
-
-    weak var owner: PhageData!
-
-    var subscriptions: [PhageDataSubscription] = []
-
-    public func receive<S>(subscriber: S) where S : Subscriber, S.Failure == Never, S.Input == PhageDataEvent {
-        let subscription = PhageDataSubscription(owner: self, receiver: subscriber as! AnySubscriber<PhageDataEvent, Never>)
-        subscriptions.append(subscription)
-        subscriber.receive(subscription: subscription)
+    /// An event that may be emitted over the lifetime of a PhageData object.
+    public enum Event {
+        case bundlesReloaded
+        case deletedBundle(String)
+        case changedBundle(String)
+        case addedBundle(String)
     }
-
-    func removeSubscription(_ subscription: PhageDataSubscription) {
-        subscriptions.removeAll(where: { $0.id == subscription.id })
-    }
-
-    func emitToAllSubscribers(event: PhageDataEvent) {
-        for subscription in subscriptions {
-            subscription.send(event)
-        }
-    }
-
-}
-
-public class PhageDataSubscription : Subscription {
-
-    let id: UUID = UUID()
-    weak var owner: PhageDataPublisher?
-    var receiver: AnySubscriber<PhageDataEvent, Never>
-
-    init(owner: PhageDataPublisher, receiver: AnySubscriber<PhageDataEvent, Never>) {
-        self.owner = owner
-        self.receiver = receiver
-    }
-
-    public func request(_ demand: Subscribers.Demand) {
-        // TODO: figure out what these are for
-    }
-
-    public func cancel() {
-        if let owner = owner {
-            owner.removeSubscription(self)
-        }
-    }
-
-    func send(_ event: PhageDataEvent) {
-        // TODO: figure out what the demand is for
-        let _ = receiver.receive(event)
-    }
-
-}
-
-/// An event that may be emitted over the lifetime of a PhageData object.
-public enum PhageDataEvent {
-    case bundlesReloaded
-    case deletedBundle(String)
-    case changedBundle(String)
-    case addedBundle(String)
-    case addedBundleFile(String, String)
 }

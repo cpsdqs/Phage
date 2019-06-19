@@ -13,17 +13,16 @@ import PhageCore
 @NSApplicationMain
 class AppDelegate : NSObject, NSApplicationDelegate {
 
-    var data = PhageData()
-
     var window: NSWindow!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
+            contentRect: NSRect(x: 0, y: 0, width: 300, height: 480),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
             backing: .buffered, defer: false)
         window.center()
         window.setFrameAutosaveName("Main Window")
+        window.title = "Phage"
 
         window.contentView = NSHostingView(rootView: ContentView())
 
@@ -31,6 +30,10 @@ class AppDelegate : NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+    }
+
+    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+        return true
     }
 
 }

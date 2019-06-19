@@ -27,6 +27,15 @@ let injectionTries = 0
         isTopLevel: window.top === window
     })
 
+    let forceUpdateInterval = null
+
+    function requestUpdate () {
+        safari.extension.dispatchMessage('updateRequest', {
+            url: window.location.href,
+            sessionID: injectorSessionID,
+        })
+    }
+
     safari.self.addEventListener('message', event => {
         if (event.name === 'initInjector') {
             if (event.message.sessionID !== injectorSessionID) return
@@ -35,12 +44,24 @@ let injectionTries = 0
                 injectScripts(bundle.id, bundle.scripts)
                 injectStyles(bundle.id, bundle.styles)
             }
+        } else if (event.name === 'forceUpdate') {
+            if (event.message.action === 'single') {
+                requestUpdate()
+            } else if (event.message.action === 'begin' && forceUpdateInterval === null) {
+                forceUpdateInterval = setInterval(requestUpdate, 1000)
+            } else if (event.message.action === 'end' && forceUpdateInterval !== null) {
+                clearInterval(forceUpdateInterval)
+            }
         } else if (event.name === 'updateStyles') {
+            if (event.message.sessionID !== injectorSessionID) return
+
+            if (event.message.replace) {
+                removeAllStyles()
+            } else for (const bundleID of event.message.removed) {
+                removeStyles(bundleID);
+            }
             for (const bundle of event.message.updated) {
                 injectStyles(bundle.id, bundle.styles);
-            }
-            for (const bundleID of event.message.removed) {
-                removeStyles(bundleID);
             }
         }
     })
@@ -131,4 +152,8 @@ function removeStyles (bundle) {
         }
     }
     delete injectedStyles[bundle]
+}
+
+function removeAllStyles () {
+    for (const bundle in injectedStyles) removeStyles(bundle)
 }

@@ -93,25 +93,55 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         return bundles
     }
 
-    // TODO: fix this
-    // MARK: PhageDataStoreListener
+    // MARK: Bundle update handling
+    var version = 0
 
-    func phageDataStoreDidChangeBundles() {
+    func dispatchUpdateNotification() {
+        version = version + 1
+        NSLog("dispatching update notification")
         performOnAllPages { page in
+            page.dispatchMessageToScript(withName: "updateAvailable", userInfo: [:])
+        }
+    }
+
+    var pendingUpdate: PhageData.Event?
+
+    func sendDiffUpdate(to page: SFSafariPage, url: URL, session: String) {
+        if let update = pendingUpdate {
+            var updated: [[String: Any]] = []
+            var removed: [String] = []
+            switch update {
+            case .addedBundle(let newBundle):
+                if let bundle = serializeBundle(name: newBundle, matching: url) {
+                    updated = [bundle]
+                }
+            case .changedBundle(let changedBundle):
+                if let bundle = serializeBundle(name: changedBundle, matching: url) {
+                    updated = [bundle]
+                } else {
+                    removed = [changedBundle]
+                }
+            case .deletedBundle(let deletedBundle):
+                removed = [deletedBundle]
+            case .bundlesReloaded:
+                sendCompleteUpdate(to: page, url: url, session: session)
+                return
+            }
             page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
-                "updated": [], // TODO
-                "removed": []
+                "version": version,
+                "sessionID": session,
+                "updated": updated,
+                "removed": removed,
             ])
         }
     }
 
-    func phageDataStoreDidChangeBundle(withName name: String) {
-        performOnAllPages { page in
-            page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
-                "updated": [], // TODO
-                "removed": []
-            ])
-        }
+    func sendCompleteUpdate(to page: SFSafariPage, url: URL, session: String) {
+        page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
+            "sessionID": session,
+            "updated": serializeBundlesMatching(url: url),
+            "replace": true,
+        ])
     }
 
     // MARK: SFSafariExtensionHandling
@@ -131,7 +161,17 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             page.dispatchMessageToScript(withName: "initInjector", userInfo: [
                 "sessionID": sessionID,
                 "bundles": bundles,
+                "version": version,
             ])
+        case "updateRequest":
+            guard let urlString = userInfo?["url"] as? String,
+                let sessionID = userInfo?["sessionID"] as? String else { return }
+
+            guard let url  = URL(string: urlString) else { return }
+
+            NSLog("received update request for page at \(url)")
+
+            sendCompleteUpdate(to: page, url: url, session: sessionID)
         default:
             NSLog("Script sent unknown message \(messageName)?")
             break
