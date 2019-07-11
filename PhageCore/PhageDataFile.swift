@@ -216,7 +216,7 @@ func parseCSSFileSections(_ contents: String) -> [Section] {
     func consumeComment(in string: String, at startIndex: String.Index) -> String.Index? {
         let substr = string[startIndex...]
         if substr.starts(with: "/*") {
-            return string.range(of: "*/")?.upperBound
+            return substr.range(of: "*/")?.upperBound
         }
         return nil
     }

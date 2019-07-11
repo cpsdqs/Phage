@@ -10,16 +10,23 @@ import Foundation
 import SwiftUI
 import Combine
 
+public let appGroupID = Bundle.main.infoDictionary!["TeamIdentifierPrefix"] as! String + "net.cloudwithlightning.phage"
+public let bundlesURL = FileManager.default
+    .containerURL(forSecurityApplicationGroupIdentifier: appGroupID)!
+    .appendingPathComponent("bundles")
+public let dependenciesURL = FileManager.default
+    .containerURL(forSecurityApplicationGroupIdentifier: appGroupID)!
+    .appendingPathComponent("dependencies")
+
 /// Observes Phage user data, i.e. scripts and stylesheets.
 public class PhageData : NSObject, NSFilePresenter, BindableObject {
 
-    public override init() {
-        containerURL = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: Self.appGroupID)!
-            .appendingPathComponent("bundles")
+    public var dependencies: PhageDependencies! = nil
 
+    public override init() {
         super.init()
 
+        dependencies = PhageDependencies(owner: self)
         NSFileCoordinator.addFilePresenter(self)
 
         reload()
@@ -38,7 +45,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
         bundles = [:]
 
         let directoryContents = try? FileManager.default.contentsOfDirectory(
-            at: containerURL,
+            at: bundlesURL,
             includingPropertiesForKeys: nil,
             options: .skipsHiddenFiles
         )
@@ -55,7 +62,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
     /// Returns the enclosing bundle’s URL and the remaining subpath.
     func bundleURLAndSubpath(enclosing url: URL) -> (URL, [String])? {
         var pathComponents = url.pathComponents
-        for component in containerURL.pathComponents {
+        for component in bundlesURL.pathComponents {
             // check if path matches and pop front
             if pathComponents.first == component {
                 pathComponents.removeFirst()
@@ -66,7 +73,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
         if pathComponents.isEmpty {
             return nil
         }
-        let bundleURL = containerURL.appendingPathComponent(pathComponents.removeFirst())
+        let bundleURL = bundlesURL.appendingPathComponent(pathComponents.removeFirst())
         return (bundleURL, pathComponents)
     }
 
@@ -123,12 +130,9 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
 
     // MARK: - NSFilePresenter
 
-    public static let appGroupID = Bundle.main.infoDictionary!["TeamIdentifierPrefix"] as! String + "net.cloudwithlightning.phage"
-    public let containerURL: URL
-
     public var presentedItemURL: URL? {
         get {
-            return containerURL
+            return bundlesURL
         }
     }
     public var presentedItemOperationQueue: OperationQueue = OperationQueue.main

@@ -31,6 +31,17 @@ public class PhageDataBundle : NSObject, BindableObject, Identifiable {
         }
     }
 
+    public func dependencies() -> [URL] {
+        var dependencies: [URL] = []
+        for (_, file) in files {
+            dependencies.append(contentsOf: file.dependencies()
+                .map { URL(string: $0) }
+                .filter { $0 != nil }
+                .map { $0! })
+        }
+        return dependencies
+    }
+
     /// Handles a new or changed file.
     /// - Parameter url: a top-level subitem of this bundle. Will not be checked for validity
     func updatedFile(at url: URL) {

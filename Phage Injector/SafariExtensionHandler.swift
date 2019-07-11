@@ -46,9 +46,28 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             switch file.contents() {
             case .some(.javascript(let section)):
                 if section.matches(url: url) {
+                    var prelude = ""
+                    for dependency in file.dependencies() {
+                        let stringEscapedName = dependency
+                            .replacingOccurrences(of: "\\", with: "\\\\")
+                            .replacingOccurrences(of: "\"", with: "\\\"")
+                            .replacingOccurrences(of: "\n", with: "\\\n")
+                        if let url = URL(string: dependency) {
+                            if let data = data.dependencies.getDependencyContents(of: url) {
+                                let commentEscapedName = dependency.replacingOccurrences(of: "*/", with: "* /")
+                                prelude.append("\n/* Dependency: \(commentEscapedName) */\n")
+                                prelude.append(data)
+                            } else {
+                                prelude.append(";alert(\"[Phage]\n\nMissing dependency “\(stringEscapedName).” Use the Phage app to download it\");\n")
+                            }
+                        } else {
+                            prelude.append(";console.error(\"[Phage] invalid dependency \(stringEscapedName)\");\n")
+                        }
+                    }
+
                     scripts.append([
                         "name": name,
-                        "prelude": "", // TODO: load dependencies
+                        "prelude": prelude,
                         "contents": section.contents,
                     ])
                 }

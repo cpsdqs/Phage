@@ -30,6 +30,7 @@
 		0FDFB3F022B7EAF700213CC7 /* PhageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3EF22B7EAF700213CC7 /* PhageData.swift */; };
 		0FDFB3F422B8A10900213CC7 /* PhageDataBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */; };
 		0FDFB3F622B93C7E00213CC7 /* PhageDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */; };
+		0FFB95BE22C2291D008D2FAE /* PhageDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB95BD22C2291D008D2FAE /* PhageDependencies.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		0FDFB3EF22B7EAF700213CC7 /* PhageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageData.swift; sourceTree = "<group>"; };
 		0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDataBundle.swift; sourceTree = "<group>"; };
 		0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDataFile.swift; sourceTree = "<group>"; };
+		0FFB95BD22C2291D008D2FAE /* PhageDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDependencies.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 				0FDFB3EF22B7EAF700213CC7 /* PhageData.swift */,
 				0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */,
 				0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */,
+				0FFB95BD22C2291D008D2FAE /* PhageDependencies.swift */,
 			);
 			path = PhageCore;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 			files = (
 				0FDFB3F022B7EAF700213CC7 /* PhageData.swift in Sources */,
 				0FDFB3F622B93C7E00213CC7 /* PhageDataFile.swift in Sources */,
+				0FFB95BE22C2291D008D2FAE /* PhageDependencies.swift in Sources */,
 				0FDFB3F422B8A10900213CC7 /* PhageDataBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -116,6 +116,7 @@ ${contents}
 }
 
 const injectedStyles = {}
+let injectIntoBody = false
 
 function injectStyles (bundle, styles) {
     // remove existing styles first
@@ -132,18 +133,30 @@ function injectStyles (bundle, styles) {
 
     injectedStyles[bundle] = nodes
 
-    if (document.head) {
-        // just append to document head
+    if (injectIntoBody) {
+        for (const node of nodes) document.body.appendChild(node)
+    } else if (document.head) {
         for (const node of nodes) document.head.appendChild(node)
     } else {
         document.addEventListener('load', () => {
             // inject if still valid
             if (injectedStyles[bundle] === nodes) {
-                for (const node of nodes) document.head.appendChild(node)
+                for (const node of nodes) if (!node.parentNode) document.body.appendChild(node)
             }
         })
     }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    injectIntoBody = true
+    for (const bundle in injectedStyles) {
+        // move styles to the body so they have precedence
+        for (const node of injectedStyles[bundle]) {
+            if (node.parentNode) node.parentNode.removeChild(node)
+            document.body.appendChild(node)
+        }
+    }
+})
 
 function removeStyles (bundle) {
     if (injectedStyles[bundle]) {
