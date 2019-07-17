@@ -43,7 +43,7 @@ struct ContentView : View {
                             }.frame(width: 24)
                             VStack(alignment: .leading) {
                                 Text(bundle.url.lastPathComponent)
-                                Text("Files: \(bundle.files.count)").color(.gray)
+                                Text("Files: \(bundle.files.count)").foregroundColor(.gray)
                             }
                         }
                     }
@@ -51,7 +51,7 @@ struct ContentView : View {
                 if data.bundles.count == 0 {
                     HStack {
                         Spacer()
-                        Text("No bundles").color(.gray)
+                        Text("No bundles").foregroundColor(.gray)
                         Spacer()
                     }
                 }

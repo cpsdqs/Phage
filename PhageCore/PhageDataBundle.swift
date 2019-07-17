@@ -51,14 +51,14 @@ public class PhageDataBundle : NSObject, BindableObject, Identifiable {
             files[name] = file
         }
 
-        didChange.send(.changedFile(name))
+        willChange.send(.changedFile(name))
     }
 
     func deletedFile(at url: URL) {
         let name = url.lastPathComponent
         files.removeValue(forKey: name)
 
-        didChange.send(.deletedFile(name))
+        willChange.send(.deletedFile(name))
     }
 
     // MARK: - Identifiable
@@ -70,7 +70,7 @@ public class PhageDataBundle : NSObject, BindableObject, Identifiable {
 
     // MARK: - BindableObject
 
-    public var didChange = PassthroughSubject<Event, Never>()
+    public var willChange = PassthroughSubject<Event, Never>()
 
     public enum Event {
         case changedFile(String)

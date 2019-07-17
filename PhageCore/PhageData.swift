@@ -34,7 +34,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
 
     // MARK: - BindableObject
 
-    public var didChange = PassthroughSubject<Event, Never>()
+    public var willChange = PassthroughSubject<Event, Never>()
 
     // MARK: - Bundle Handling
 
@@ -56,7 +56,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             }
         }
 
-        didChange.send(.bundlesReloaded)
+        willChange.send(.bundlesReloaded)
     }
 
     /// Returns the enclosing bundle’s URL and the remaining subpath.
@@ -87,7 +87,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             if bundles[name] == nil {
                 if let bundle = PhageDataBundle(at: bundleURL) {
                     bundles[name] = bundle
-                    didChange.send(.addedBundle(name))
+                    willChange.send(.addedBundle(name))
                     return true
                 }
             } else {
@@ -103,7 +103,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             bundles.removeValue(forKey: name)
         }
 
-        didChange.send(.deletedBundle(name))
+        willChange.send(.deletedBundle(name))
     }
 
     func didDeleteBundleFile(at bundleURL: URL, subPath: [String]) {
@@ -112,7 +112,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             if subPath.count == 1 {
                 // TODO: what about deeper items?
                 bundles[name]!.deletedFile(at: bundleURL.appendingPathComponent(subPath[0]))
-                didChange.send(.changedBundle(name))
+                willChange.send(.changedBundle(name))
             }
         }
     }
@@ -123,7 +123,7 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
             if subPath.count == 1 {
                 // TODO: what about deeper items?
                 bundles[name]!.updatedFile(at: bundleURL.appendingPathComponent(subPath[0]))
-                didChange.send(.changedBundle(name))
+                willChange.send(.changedBundle(name))
             }
         }
     }
