@@ -35,23 +35,7 @@ struct ContentView : View {
                         Text("Show in Finder")
                     }
                 }
-                ForEach(sortedBundles()) { bundle in
-                    NavigationLink(
-                        destination:
-                            BundleView(dependencies: self.data.dependencies, bundle: bundle)
-                                .frame(minWidth: 300)
-                    ) {
-                        HStack {
-                            Toggle(isOn: .constant(true)) {
-                                EmptyView()
-                            }.frame(width: 24)
-                            VStack(alignment: .leading) {
-                                Text(bundle.url.lastPathComponent)
-                                Text("Files: \(bundle.files.count)").foregroundColor(.secondary)
-                            }
-                        }
-                    }
-                }
+                ForEach(sortedBundles()) { bundle in SidebarBundle(bundle: bundle, data: self.data) }
                 if data.bundles.count == 0 {
                     HStack {
                         Spacer()
@@ -60,6 +44,49 @@ struct ContentView : View {
                     }
                 }
             }.frame(width: 300)
+        }
+    }
+}
+
+struct SidebarBundle : View {
+    private struct BundleToggle : View {
+        @Binding var enabled: Bool
+        var body: some View {
+            // using the checkbox toggle style doesn't play nice with the computed binding for
+            // some reason
+            Toggle(isOn: $enabled) {
+                EmptyView()
+            }.toggleStyle(SwitchToggleStyle())
+        }
+    }
+
+    @ObservedObject var bundle: PhageDataBundle
+    @State var hackyDisabledProxy = false
+    var data: PhageData
+
+    var body: some View {
+        NavigationLink(
+            destination:
+            BundleView(dependencies: self.data.dependencies, bundle: bundle)
+            .frame(minWidth: 300)
+        ) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(bundle.url.lastPathComponent).foregroundColor(hackyDisabledProxy ? .secondary : nil)
+                    if !hackyDisabledProxy {
+                        Text("Files: \(bundle.files.count)").foregroundColor(.secondary)
+                    }
+                }.frame(minHeight: 32).animation(.easeOut)
+                Spacer()
+                BundleToggle(enabled: Binding(get: {
+                    !self.bundle.disabled
+                }, set: { enabled in
+                    self.bundle.disabled = !enabled
+                    self.hackyDisabledProxy = self.bundle.disabled
+                })).onAppear {
+                    self.hackyDisabledProxy = self.bundle.disabled
+                }
+            }
         }
     }
 }
@@ -82,7 +109,15 @@ struct BundleView : View {
 
     var body: some View {
         List {
-            Text(bundle.url.lastPathComponent).font(.title).bold().padding(.top)
+            HStack(alignment: .lastTextBaseline) {
+                Text(bundle.url.lastPathComponent).font(.title).bold().padding(.top)
+                Spacer()
+                Button(action: {
+                    NSWorkspace.shared.open(self.bundle.url)
+                }) {
+                    Text("Open")
+                }
+            }
             Spacer()
 
             Text("Files").font(.headline).bold()

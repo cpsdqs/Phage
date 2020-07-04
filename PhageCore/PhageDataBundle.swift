@@ -13,6 +13,32 @@ public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
 
     public let url: URL
     public var files: [String:PhageDataFile] = [:]
+    public var disabled: Bool {
+        get {
+            // check if the disabled xattr exists
+            return url.withUnsafeFileSystemRepresentation { path in
+                let code = getxattr(path, "disabled", nil, 0, 0, 0)
+                // if getxattr fails that probably means the attribute doesn't exist
+                return code != -1
+            }
+        }
+        set(disabled) {
+            url.withUnsafeFileSystemRepresentation { path in
+                self.willChange.send(.changedEnabled(disabled))
+                if disabled {
+                    let value = "yes".data(using: .utf8)!
+                    let result = value.withUnsafeBytes { data in
+                        setxattr(path, "disabled", data.baseAddress, data.count, 0, 0)
+                    }
+                    if result < 0 {
+                        NSLog("Failed to set disabled state on bundle at \(url)")
+                    }
+                } else {
+                    removexattr(path, "disabled", 0)
+                }
+            }
+        }
+    }
 
     init?(at url: URL) {
         self.url = url
@@ -72,6 +98,7 @@ public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
     public var willChange = PassthroughSubject<Event, Never>()
 
     public enum Event {
+        case changedEnabled(Bool)
         case changedFile(String)
         case deletedFile(String)
     }

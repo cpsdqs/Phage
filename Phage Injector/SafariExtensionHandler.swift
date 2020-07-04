@@ -104,7 +104,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     func serializeBundlesMatching(url: URL) -> [[String: Any]] {
         var bundles: [[String: Any]] = []
-        for (name, _) in data.bundles {
+        for (name, bundle) in data.bundles {
+            if bundle.disabled {
+                continue
+            }
             if let serialized = serializeBundle(name: name, matching: url) {
                 bundles.append(serialized)
             }
