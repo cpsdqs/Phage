@@ -175,7 +175,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             guard let url = URL(string: urlString) else { return }
 
             let bundles = serializeBundlesMatching(url: url)
-            NSLog("received init for page at \(url), sending bundles (\(bundles.count))")
+            // NSLog("received init for page at \(url), sending bundles (\(bundles.count))")
 
             page.dispatchMessageToScript(withName: "initInjector", userInfo: [
                 "sessionID": sessionID,

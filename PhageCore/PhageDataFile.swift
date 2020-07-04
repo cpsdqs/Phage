@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 public class PhageDataFile : NSObject, Identifiable {
     public let url: URL

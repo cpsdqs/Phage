@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import SwiftUI
 import Combine
 
-public class PhageDataBundle : NSObject, BindableObject, Identifiable {
+public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
 
     public let url: URL
     public var files: [String:PhageDataFile] = [:]
@@ -68,7 +67,7 @@ public class PhageDataBundle : NSObject, BindableObject, Identifiable {
         }
     }
 
-    // MARK: - BindableObject
+    // MARK: - ObservableObject
 
     public var willChange = PassthroughSubject<Event, Never>()
 

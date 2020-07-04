@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftUI
 import Combine
 
 public let appGroupID = Bundle.main.infoDictionary!["TeamIdentifierPrefix"] as! String + "net.cloudwithlightning.phage"
@@ -19,7 +18,7 @@ public let dependenciesURL = FileManager.default
     .appendingPathComponent("dependencies")
 
 /// Observes Phage user data, i.e. scripts and stylesheets.
-public class PhageData : NSObject, NSFilePresenter, BindableObject {
+public class PhageData : NSObject, NSFilePresenter, ObservableObject {
 
     public var dependencies: PhageDependencies! = nil
 
@@ -32,8 +31,9 @@ public class PhageData : NSObject, NSFilePresenter, BindableObject {
         reload()
     }
 
-    // MARK: - BindableObject
+    // MARK: - ObservableObject
 
+    // technically incorrect but w/e
     public var willChange = PassthroughSubject<Event, Never>()
 
     // MARK: - Bundle Handling
