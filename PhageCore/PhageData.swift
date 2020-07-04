@@ -31,14 +31,9 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
         reload()
     }
 
-    // MARK: - ObservableObject
-
-    // technically incorrect but w/e
-    public var willChange = PassthroughSubject<Event, Never>()
-
     // MARK: - Bundle Handling
 
-    public var bundles: [String:PhageDataBundle] = [:]
+    @Published public var bundles: [String:PhageDataBundle] = [:]
 
     /// Reloads all bundles.
     func reload() {
@@ -55,8 +50,6 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
                 let _ = tryEnsureBundle(enclosing: subitemURL)
             }
         }
-
-        willChange.send(.bundlesReloaded)
     }
 
     /// Returns the enclosing bundle’s URL and the remaining subpath.
@@ -87,7 +80,6 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
             if bundles[name] == nil {
                 if let bundle = PhageDataBundle(at: bundleURL) {
                     bundles[name] = bundle
-                    willChange.send(.addedBundle(name))
                     return true
                 }
             } else {
@@ -102,8 +94,6 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
         if bundles[name] != nil {
             bundles.removeValue(forKey: name)
         }
-
-        willChange.send(.deletedBundle(name))
     }
 
     func didDeleteBundleFile(at bundleURL: URL, subPath: [String]) {
@@ -112,7 +102,6 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
             if subPath.count == 1 {
                 // TODO: what about deeper items?
                 bundles[name]!.deletedFile(at: bundleURL.appendingPathComponent(subPath[0]))
-                willChange.send(.changedBundle(name))
             }
         }
     }
@@ -123,7 +112,6 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
             if subPath.count == 1 {
                 // TODO: what about deeper items?
                 bundles[name]!.updatedFile(at: bundleURL.appendingPathComponent(subPath[0]))
-                willChange.send(.changedBundle(name))
             }
         }
     }
@@ -181,13 +169,5 @@ public class PhageData : NSObject, NSFilePresenter, ObservableObject {
                 didChangeBundleFile(at: bundleURL, subPath: subPath)
             }
         }
-    }
-
-    /// An event that may be emitted over the lifetime of a PhageData object.
-    public enum Event {
-        case bundlesReloaded
-        case deletedBundle(String)
-        case changedBundle(String)
-        case addedBundle(String)
     }
 }

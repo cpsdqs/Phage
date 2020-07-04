@@ -126,38 +126,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         }
     }
 
-    var pendingUpdate: PhageData.Event?
-
-    func sendDiffUpdate(to page: SFSafariPage, url: URL, session: String) {
-        if let update = pendingUpdate {
-            var updated: [[String: Any]] = []
-            var removed: [String] = []
-            switch update {
-            case .addedBundle(let newBundle):
-                if let bundle = serializeBundle(name: newBundle, matching: url) {
-                    updated = [bundle]
-                }
-            case .changedBundle(let changedBundle):
-                if let bundle = serializeBundle(name: changedBundle, matching: url) {
-                    updated = [bundle]
-                } else {
-                    removed = [changedBundle]
-                }
-            case .deletedBundle(let deletedBundle):
-                removed = [deletedBundle]
-            case .bundlesReloaded:
-                sendCompleteUpdate(to: page, url: url, session: session)
-                return
-            }
-            page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
-                "version": version,
-                "sessionID": session,
-                "updated": updated,
-                "removed": removed,
-            ])
-        }
-    }
-
     func sendCompleteUpdate(to page: SFSafariPage, url: URL, session: String) {
         page.dispatchMessageToScript(withName: "updateStyles", userInfo: [
             "sessionID": session,
@@ -172,8 +140,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         switch messageName {
         case "initInjector":
             guard let urlString = userInfo?["url"] as? String,
-                let sessionID = userInfo?["sessionID"] as? String,
-                let isTopLevel = userInfo?["isTopLevel"] as? Bool else { return }
+                let sessionID = userInfo?["sessionID"] as? String else { return }
 
             guard let url = URL(string: urlString) else { return }
 

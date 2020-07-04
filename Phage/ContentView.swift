@@ -105,7 +105,7 @@ struct BundleView : View {
     }
 
     var dependencies: PhageDependencies
-    var bundle: PhageDataBundle
+    @ObservedObject var bundle: PhageDataBundle
 
     var body: some View {
         List {
@@ -122,7 +122,9 @@ struct BundleView : View {
 
             Text("Files").font(.headline).bold()
             MaybeNone(count: bundle.files.count, text: "No files")
-            ForEach(Array(bundle.files.values)) { item in
+            ForEach(Array(bundle.files.values.sorted(by: { a, b in
+                a.url.lastPathComponent.lexicographicallyPrecedes(b.url.lastPathComponent)
+            }))) { item in
                 BundleFileView(file: item)
             }
             Spacer()

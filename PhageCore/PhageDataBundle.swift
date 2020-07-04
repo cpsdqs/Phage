@@ -12,7 +12,7 @@ import Combine
 public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
 
     public let url: URL
-    public var files: [String:PhageDataFile] = [:]
+    @Published public var files: [String:PhageDataFile] = [:]
     public var disabled: Bool {
         get {
             // check if the disabled xattr exists
@@ -24,7 +24,6 @@ public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
         }
         set(disabled) {
             url.withUnsafeFileSystemRepresentation { path in
-                self.willChange.send(.changedEnabled(disabled))
                 if disabled {
                     let value = "yes".data(using: .utf8)!
                     let result = value.withUnsafeBytes { data in
@@ -75,15 +74,11 @@ public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
         if let file = PhageDataFile(at: url) {
             files[name] = file
         }
-
-        willChange.send(.changedFile(name))
     }
 
     func deletedFile(at url: URL) {
         let name = url.lastPathComponent
         files.removeValue(forKey: name)
-
-        willChange.send(.deletedFile(name))
     }
 
     // MARK: - Identifiable
@@ -91,15 +86,5 @@ public class PhageDataBundle : NSObject, ObservableObject, Identifiable {
         get {
             return url
         }
-    }
-
-    // MARK: - ObservableObject
-
-    public var willChange = PassthroughSubject<Event, Never>()
-
-    public enum Event {
-        case changedEnabled(Bool)
-        case changedFile(String)
-        case deletedFile(String)
     }
 }
