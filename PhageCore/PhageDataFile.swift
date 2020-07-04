@@ -110,8 +110,7 @@ public enum MatchRule: Equatable {
         case .prefix(let pattern):
             return url.absoluteString.starts(with: pattern)
         case .domain(let pattern):
-            // FIXME: does not match subdomains
-            return url.host == pattern
+            return url.host == pattern || (url.host?.hasSuffix("." + pattern) ?? false)
         case .regexp(let pattern):
             if let regexp = try? NSRegularExpression(pattern: pattern, options: .init()) {
                 let urlString = url.absoluteString
