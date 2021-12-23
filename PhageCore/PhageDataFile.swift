@@ -69,6 +69,32 @@ public class PhageDataFile : NSObject, Identifiable {
         return nil
     }
 
+    public var inPageContext: Bool {
+        get {
+            // check if the disabled xattr exists
+            return url.withUnsafeFileSystemRepresentation { path in
+                let code = getxattr(path, "inPageContext", nil, 0, 0, 0)
+                // if getxattr fails that probably means the attribute doesn't exist
+                return code != -1
+            }
+        }
+        set(inPageContext) {
+            url.withUnsafeFileSystemRepresentation { path in
+                if inPageContext {
+                    let value = "yes".data(using: .utf8)!
+                    let result = value.withUnsafeBytes { data in
+                        setxattr(path, "inPageContext", data.baseAddress, data.count, 0, 0)
+                    }
+                    if result < 0 {
+                        NSLog("Failed to set inPageContext flag on file at \(url)")
+                    }
+                } else {
+                    removexattr(path, "inPageContext", 0)
+                }
+            }
+        }
+    }
+
     // MARK: - Identifiable
     public var id: URL {
         get {

@@ -153,6 +153,9 @@ struct BundleFileView : View {
                 }
             }
             FileContents(contents: file.contents())
+            if file.type == .javascript {
+                ScriptFileAttributes(file: file)
+            }
         }.padding()
             .background(Color(NSColor.controlBackgroundColor).cornerRadius(8))
     }
@@ -245,6 +248,20 @@ struct SectionMatchRule : View {
             return HStack { Tag(text: "Prefix"); Value(value: prefix) }
         case .regexp(let regexp):
             return HStack { Tag(text: "RegExp"); Value(value: regexp) }
+        }
+    }
+}
+
+struct ScriptFileAttributes : View {
+    var file: PhageDataFile
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Toggle("Inject into page context", isOn: Binding(get: {
+                file.inPageContext
+            }, set: { val in
+                file.inPageContext = val
+            }))
         }
     }
 }

@@ -31,6 +31,7 @@
 		0FDFB3F422B8A10900213CC7 /* PhageDataBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */; };
 		0FDFB3F622B93C7E00213CC7 /* PhageDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */; };
 		0FFB95BE22C2291D008D2FAE /* PhageDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFB95BD22C2291D008D2FAE /* PhageDependencies.swift */; };
+		4E2B09BE27741C7E00B3E691 /* page-script.js in Resources */ = {isa = PBXBuildFile; fileRef = 4E2B09BD27741C7E00B3E691 /* page-script.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +155,7 @@
 		0FDFB3F322B8A10900213CC7 /* PhageDataBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDataBundle.swift; sourceTree = "<group>"; };
 		0FDFB3F522B93C7E00213CC7 /* PhageDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDataFile.swift; sourceTree = "<group>"; };
 		0FFB95BD22C2291D008D2FAE /* PhageDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhageDependencies.swift; sourceTree = "<group>"; };
+		4E2B09BD27741C7E00B3E691 /* page-script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "page-script.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 				0F31D90022B7DE26009D305A /* script.js */,
 				0F31D90222B7DE26009D305A /* ToolbarItemIcon.pdf */,
 				0F31D90422B7DE26009D305A /* Phage_Injector.entitlements */,
+				4E2B09BD27741C7E00B3E691 /* page-script.js */,
 			);
 			path = "Phage Injector";
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E2B09BE27741C7E00B3E691 /* page-script.js in Resources */,
 				0F31D90322B7DE26009D305A /* ToolbarItemIcon.pdf in Resources */,
 				0F31D8FE22B7DE26009D305A /* SafariExtensionViewController.xib in Resources */,
 				0F31D90122B7DE26009D305A /* script.js in Resources */,

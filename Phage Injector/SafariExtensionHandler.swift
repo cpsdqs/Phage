@@ -69,6 +69,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                         "name": name,
                         "prelude": prelude,
                         "contents": section.contents,
+                        "inPageContext": file.inPageContext
                     ])
                 }
             case .some(.stylesheets(let sections)):
